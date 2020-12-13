@@ -24,7 +24,14 @@ function App() {
           component={loadable(() =>
             import(/* WebpackChunkName: "home" */ './views/Login')
           )}
-        />      
+        />  
+        <Route 
+          path="/articles"
+          exact
+          component={loadable(() =>
+            import(/* WebpackChunkName: "home" */ './views/articles')
+          )}
+        />    
       </Switch>
     </div>
   );
