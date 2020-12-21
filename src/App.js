@@ -1,15 +1,18 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import loadable from '@loadable/component';
 
 import '@/styles/app.scss';
-import background from '@/images/2020.jpg';
 
 
 function App() {
   return (
     <div className="app">
+      <ul>
+        <li><Link to="/">首页</Link></li>
+        <li><Link to="/articles/1">文章</Link></li>
+      </ul>
       <Switch>
         <Route
           path="/"
@@ -27,7 +30,6 @@ function App() {
         />  
         <Route 
           path="/articles"
-          exact
           component={loadable(() =>
             import(/* WebpackChunkName: "home" */ './views/articles')
           )}

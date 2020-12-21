@@ -1,20 +1,21 @@
 import React from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import loadable from '@loadable/component';
+import { Redirect, Route, Switch, useLocation, useRouteMatch } from 'react-router-dom';
 
 export default () => {
-  const { pathname } = useLocation();
-  if(pathname === '/articles'){
-    return <Redirect to="/" />
-  }
+  const match = useRouteMatch();
+  console.log(match)
   return (
     <Switch>
       <Route 
-        path=":id"
-        exact
+        path={`${match.path}/:id`}
         component={loadable(() =>
           import(/* WebpackChunkName: "home" */ './show')
         )}
       />
+      <Route path={match.path}>
+        <Redirect to="/" />
+      </Route>
     </Switch>
   )
 }

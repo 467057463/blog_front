@@ -9,7 +9,7 @@ module.exports = {
     index: './src/index.js',
   },
   output: {
-    publicPath: '',
+    publicPath: '/',
     filename: 'js/[name].[chunkhash:8].bundle.js',
     path: path.resolve(__dirname, '../dist')
   },
