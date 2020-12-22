@@ -1,24 +1,5 @@
-import { action, makeObservable, observable } from 'mobx';
+import articles from './ArticlesStore'
 
-
-class Store{
-  id = Math.random();
-  title = '';
-  finished = false;
-
-  constructor(title){
-    makeObservable(this, {
-      title: observable,
-      finished: observable,
-      toggle: action
-    })
-    this.title = title
-  }
-
-  toggle(){
-    this.finished = !this.finished
-  }
-  // @observable price = 0;
+export default {
+  articles
 }
-
-export default Store;

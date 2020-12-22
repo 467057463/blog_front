@@ -1,13 +1,13 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import App from '@/App';
-import Store from '@/store';
+import store from '@/store';
+import StoreContext from '@/hook/StoreContext'
 
-export const StoreContext = createContext()
 
 ReactDOM.render(
-  <StoreContext.Provider value={new Store('test todo')}>
+  <StoreContext.Provider value={store}>
     <Router>
       <App />
     </Router>

@@ -18,20 +18,20 @@ function App() {
           path="/"
           exact
           component={loadable(() =>
-            import(/* WebpackChunkName: "home" */ './views/Home')
+            import(/* WebpackChunkName: "home" */ './views/home')
           )}
         />  
         <Route
           path="/login"
           exact
           component={loadable(() =>
-            import(/* WebpackChunkName: "home" */ './views/Login')
+            import(/* WebpackChunkName: "Login" */ './views/Login')
           )}
         />  
         <Route 
           path="/articles"
           component={loadable(() =>
-            import(/* WebpackChunkName: "home" */ './views/articles')
+            import(/* WebpackChunkName: "Login" */ './views/Login')
           )}
         />    
       </Switch>
