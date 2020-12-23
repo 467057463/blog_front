@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
 import StoreContext from '@/hook/StoreContext';
 import ArticleItem from './components/ArticleItem';
+import { useStore } from '@/store';
 
 export default observer(()=>{
-  const { articles } = useContext(StoreContext);
+  // const { articles } = useContext(StoreContext);
+  const { articles } = useStore();
   console.log(articles)
   const article = {
     _id: '11111', 

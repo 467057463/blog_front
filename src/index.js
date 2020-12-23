@@ -2,16 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import App from '@/App';
-import store from '@/store';
-import StoreContext from '@/hook/StoreContext'
+import { StoreProvider } from '@/store';
 
 
 ReactDOM.render(
-  <StoreContext.Provider value={store}>
+  <StoreProvider>
     <Router>
       <App />
     </Router>
-  </StoreContext.Provider>,
+  </StoreProvider>,
   document.getElementById('root')
 );
 
