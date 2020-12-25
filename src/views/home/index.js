@@ -1,24 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import StoreContext from '@/hook/StoreContext';
 import ArticleItem from './components/ArticleItem';
-import { useStore } from '@/store';
+import { useStore } from '@/hook/useStore';
 
 export default observer(()=>{
-  // const { articles } = useContext(StoreContext);
-  const { articles } = useStore();
+  const store = useStore();
+  const { articles } = store;
+  useEffect(()=>{
+    console.log('this is effect hook')
+    return () => {
+      console.log('clean up.....')
+    }
+  })
   console.log(articles)
-  const article = {
-    _id: '11111', 
-    title: 'daf', 
-    content: 'ssss'
-  }
   return(
     <div className='home'>
-      {articles.list.map(item => (
-        <ArticleItem key={item._id} article={item}/>
+      {Array.from(articles.entries()).map(item => (
+        <ArticleItem key={item[0]} article={item[1]}/>
       ))}
-      <span onClick={() => articles.add(article)}>共{articles.count}数据</span>
+      <span onClick={() => store.addArticle(Date.now(), 'daf')}>共{store.count}数据</span>
     </div>
   )
 })

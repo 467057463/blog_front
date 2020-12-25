@@ -1,23 +1,46 @@
+import { getSnapshot, types } from 'mobx-state-tree';
+import { values } from 'mobx';
 
-import { useLocalStore } from 'mobx-react';
-import React from 'react';
-import articles from './ArticlesStore'
+const Article = types
+  .model({
+    title: '',
+    content: '',
+    done: false,
+  })
+  .actions(self => ({
+    toggle(){
+      self.done = !self.done
+    }
+  }))
 
-const store = {
-  articles
-}
+const User = types
+  .model({
+    name: ''
+  })
 
-const storeContext = React.createContext(null);
+const RootStore = types
+  .model({
+    users: types.map(User),
+    articles: types.map(Article)
+  })
+  .views(self => ({
+    get count(){
+      return values(self.articles).length
+    }
+  }))
+  .actions(self => ({
+    addArticle(id, title){
+      self.articles.set(id, Article.create({title}))
+    }
+  }))
 
-export const StoreProvider = ({children}) => {
-  // const store = useLocalStore(articles);
-  return <storeContext.Provider value={store}>{children}</storeContext.Provider>
-}
-
-export const useStore = () => {
-  const store = React.useContext(storeContext)
-  if(!store){
-    throw new Error('useStore must be used within a StoreProvider.')
+export const store = RootStore.create({
+  articles: {
+    "1": {
+      title: 'sssss'
+    }
   }
-  return store;
-}
+})
+
+console.log(getSnapshot(store))
+
