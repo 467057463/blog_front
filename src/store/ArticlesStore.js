@@ -19,26 +19,17 @@ export const ArticlesStore = types
     }
   }))
   .actions(self => ({
-    fetchArticles(){
-      getArticleList()
-      self.state = "done";
-      self.list = [
-        {
-          _id: '1111',
-          title: 'dsafsda',
-          content: 'aaaaaaaa'
-        }
-      ]
-    },
-    // fetchArticles: flow(function* fetchArticles() { 
-    //   // self.list = []
-    //   self.state = "pending"
-    //   try {
-    //     // self.list = yield getArticleList()
-    //     self.state = "done"
-    //   } catch (error) {
-    //     console.error("Failed to fetch projects", error)
-    //     self.state = "error"
-    //   }
-    // })
+    fetchArticles: flow(function* fetchArticles() { 
+      // self.list = []
+      self.state = "pending"
+      try {
+        const res = yield getArticleList();
+        console.log(res)
+        self.list = res.data.data;
+        self.state = "done"
+      } catch (error) {
+        console.error("Failed to fetch projects", error)
+        self.state = "error"
+      }
+    })
   }))

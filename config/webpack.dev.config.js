@@ -13,9 +13,17 @@ module.exports = merge(common, {
 
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
+    host: '0.0.0.0',
     port: 3001,
     historyApiFallback: true,
-    hot: true
+    hot: true,
+    proxy: {
+      '/**': {
+        target: 'http://80.240.22.42/',
+        secure: false,
+        changeOrigin: true
+      }
+    }
   },
   module: {
     rules: [
