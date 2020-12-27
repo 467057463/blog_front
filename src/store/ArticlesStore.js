@@ -1,41 +1,27 @@
-import { action, computed, makeObservable, observable } from 'mobx';
+import { types } from "mobx-state-tree";
 
-class Articles{
-  list = [];
+export const Article = types
+  .model('Article', {
+    id: '',
+    title: '',
+    content: ''
+  })
 
-  constructor(list){
-    makeObservable(this, {
-      list: observable,
-      count: computed,
-      add: action
-      // finished: observable,
-    })
-    this.list = list
-  }
-
-  get count(){
-    return this.list.length
-  }
-
-  add(article){
-    this.list.push(article)
-  }
-}
-
-
-
-const articles = new Articles([
-  {
-    _id: 'dfasfdsafdsa',
-    title: 'fdsafdsaf',
-    content: 'dfafdsaf'
-  },
-  {
-    _id: '123456',
-    title: '123457',
-    content: '32134578'
-  }
-]);
-
-
-export default articles;
+export const ArticlesStore = types
+  .model('ArticlesStore', {
+    list: types.array(Article)
+  })
+  .views(self => ({
+    get count(){
+      return self.list.length;
+    }
+  }))
+  .actions(self => ({
+    addArticle(id, title, content){
+      self.list.push({
+        id, 
+        title,
+        content
+      })
+    }
+  }))

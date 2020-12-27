@@ -15,10 +15,10 @@ export default observer(()=>{
   console.log(articles)
   return(
     <div className='home'>
-      {Array.from(articles.entries()).map(item => (
+      {Array.from(articles.list.entries()).map(item => (
         <ArticleItem key={item[0]} article={item[1]}/>
       ))}
-      <span onClick={() => store.addArticle(Date.now(), 'daf')}>共{store.count}数据</span>
+      <span onClick={() => articles.addArticle(String(Date.now()), 'daf')}>共{articles.count}数据</span>
     </div>
   )
 })
