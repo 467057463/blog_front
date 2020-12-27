@@ -6,19 +6,21 @@ import { useStore } from '@/hook/useStore';
 export default observer(()=>{
   const store = useStore();
   const { articles } = store;
-  useEffect(()=>{
-    console.log('this is effect hook')
-    return () => {
-      console.log('clean up.....')
-    }
-  })
-  console.log(articles)
+  // console.log(articles.fetchArticles)
+  // useEffect(()=>{
+  //   articles.fetchArticles();
+  //   // console.log('this is effect hook')
+  //   // return () => {
+  //   //   console.log('clean up.....')
+  //   // }
+  // }, [])
+  // console.log(articles)
   return(
     <div className='home'>
-      {Array.from(articles.list.entries()).map(item => (
-        <ArticleItem key={item[0]} article={item[1]}/>
+      {articles.list.map(item => (
+        <ArticleItem key={item._id} article={item}/>
       ))}
-      <span onClick={() => articles.addArticle(String(Date.now()), 'daf')}>共{articles.count}数据</span>
+      <span onClick={() => articles.fetchArticles()}>共{articles.count}数据</span>
     </div>
   )
 })
