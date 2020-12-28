@@ -2,35 +2,11 @@ import { getArticleList } from "@/request/articles";
 import { flow, types } from "mobx-state-tree";
 import { Article } from './ArticleShowStore';
 
-// export const Article = types
-//   .model('Article', {
-//     _id: '',
-//     title: '',
-//     content: '',
-//     createdAt: '',
-//     meta: types.frozen({
-//       view: 0,
-//       like: 0
-//     }),
-//     author: types.frozen({
-//       _id: '',
-//       username: ''
-//     }),
-//     comments: types.frozen(
-//       []
-//     )
-//   })
-//   .views(self => ({
-//     get commentCount(){
-//       return self.comments.length;
-//     }
-//   }))
-
 export const ArticlesStore = types
   .model('ArticlesStore', {
     state: 'pending',
     page: 1,
-    pageSize: 10,
+    quantity: 10,
     list: types.array(Article)
   })
   .views(self => ({

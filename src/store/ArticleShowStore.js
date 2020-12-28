@@ -1,5 +1,5 @@
-// import { getArticleList } from "@/request/articles";
-import { types } from "mobx-state-tree";
+import { getArticle } from "@/request/articles";
+import { flow, types } from "mobx-state-tree";
 
 export const Article = types
   .model('Article', {
@@ -30,3 +30,17 @@ export const ArticleStore = types
     state: 'pending',
     detail: types.optional(Article, {})
   })
+  .actions(self => ({
+    fetchSource: flow(function* fetchSource(id){
+      self.state = "pending";
+      try{
+        const res = yield getArticle(id);
+        console.log(res)
+        self.detail = res.data;
+        self.state = "done";        
+      } catch (error){
+        console.error("Failed to fetch projects", error)
+        self.state = "error"
+      }
+    })
+  }))

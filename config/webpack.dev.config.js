@@ -22,10 +22,11 @@ module.exports = merge(common, {
     historyApiFallback: true,
     hot: true,
     proxy: {
-      '/*': {
+      '/api': {
         target: 'http://80.240.22.42/',
         secure: false,
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {'^/api' : ''}
       }
     }
   },
