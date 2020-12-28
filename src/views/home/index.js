@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import ArticleItem from './components/ArticleItem';
 import { useStore } from '@/hook/useStore';
 
+console.log(process.env.API_BASE_URL)
 export default observer(()=>{
   const store = useStore();
   const { articles } = store;

@@ -2,9 +2,13 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.config.js');
 
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const { definitions } = new Dotenv();
+const API_BASE_URL = JSON.stringify(definitions['process.env.API_BASE_URL']);
+console.log(API_BASE_URL);
 
 module.exports = merge(common, {
   mode: 'development',

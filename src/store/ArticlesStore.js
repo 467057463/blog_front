@@ -25,7 +25,7 @@ export const ArticlesStore = types
       try {
         const res = yield getArticleList();
         console.log(res)
-        self.list = res.data.data;
+        self.list = res.data;
         self.state = "done"
       } catch (error) {
         console.error("Failed to fetch projects", error)
