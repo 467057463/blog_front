@@ -31,7 +31,7 @@ function App() {
         <Route 
           path="/articles"
           component={loadable(() =>
-            import(/* WebpackChunkName: "Login" */ './views/Login')
+            import(/* WebpackChunkName: "article" */ './views/articles/show')
           )}
         />    
       </Switch>
