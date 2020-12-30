@@ -21,7 +21,7 @@ module.exports = {
       repo : 'git@github.com:467057463/blog_front.git',
       path : '/var/www/blog_front',
       'pre-deploy-local': '',
-      'post-deploy' : 'npm install && npm run build',
+      'post-deploy' : 'npm --production=false install && npm run build',
       'pre-setup': '',
       "env": {
         "NODE_ENV": "production"
