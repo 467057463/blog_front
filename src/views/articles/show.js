@@ -1,12 +1,16 @@
+import { useAuth } from '@/hook/useAuth';
 import { useStore } from '@/hook/useStore';
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import Comment from './components/Comment';
 
 export default observer(() => {
   const { article } = useStore();
   const { id } = useParams()
+  const { user } = useAuth();
+  const match = useRouteMatch()
+  
   useEffect(() => {
     article.fetchSource(id);
   }, [])
@@ -22,6 +26,7 @@ export default observer(() => {
   return (
     <div className="article_show">
       <h1>{article.detail.title}</h1>
+      <Link to={`${match.url}/edit`}>编辑</Link>
       <div className="meta-info">
         <Link to={'/users/' + article.detail.author._id}>{article.detail.author.username}</Link>
         <span>评论：{article.detail.commentCount}</span>

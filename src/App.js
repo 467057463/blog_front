@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import loadable from '@loadable/component';
+import Header from '@/views/layout/Header';
+import { useStore } from '@/hook/useStore';
 
 import '@/styles/app.scss';
 
 
 function App() {
+  function AppStart(){
+    auth.getCurrentUser();
+  }
+  const { auth } = useStore();
+
+  useEffect(()=> {
+    AppStart();
+  }, [])
   return (
     <div className="app">
-      <ul>
-        <li><Link to="/">首页</Link></li>
-        <li><Link to="/articles/1">文章</Link></li>
-      </ul>
+      <Header/>
       <Switch>
         <Route
           path="/"

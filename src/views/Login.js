@@ -6,24 +6,16 @@ import { useHistory } from 'react-router-dom';
 
 
 export default observer(() => {
-  const { login } = useStore();
+  const { auth } = useStore();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const auth = useAuth();
-  const history = useHistory();
 
   function submit(event){
     event.preventDefault();
     // console.log(username, password);
-    login.login({
+    auth.login({
       username,
       password
-    })
-    auth.login({
-      name: 'mm',
-      _id: 'fdasfdsafds'
-    }, function(){
-      history.replace('/')
     })
   }
 

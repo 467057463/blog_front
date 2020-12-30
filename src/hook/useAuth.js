@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
+import { store } from '@/store';
 
 const authContent = React.createContext(null);
 
 export const AuthProvider = ({children}) =>{
-  const [user, setUser] = useState(null);
-
-  const auth = {
-    user,
-    login(user, cb){
-      setUser(user);
-      cb && cb()
-    },
-    logout(){
-      setUser(null);
-    }
-  }
+  const { auth } = store;
   return <authContent.Provider value={auth}>{children}</authContent.Provider>
 }
 

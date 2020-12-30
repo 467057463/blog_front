@@ -4,12 +4,18 @@ import { Redirect, Route, Switch, useLocation, useRouteMatch } from 'react-route
 
 import AuthRoute from '@/components/AuthRoute';
 import Edit from './edit';
+import New from './new';
 
 export default () => {
   const match = useRouteMatch();
   console.log(match)
   return (
     <Switch>
+      <AuthRoute 
+        path={`${match.path}/new`}
+      >
+        <New></New>
+      </AuthRoute>
       <AuthRoute 
         path={`${match.path}/:id/edit`}
       >
