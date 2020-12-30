@@ -3,5 +3,3 @@
 /yarn.lock
 /dist
 
-/config/.env.development
-/config/.env.production
