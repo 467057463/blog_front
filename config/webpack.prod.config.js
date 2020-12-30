@@ -1,5 +1,7 @@
+const path = require('path');
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common.config.js');
+const Dotenv = require('dotenv-webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -46,7 +48,11 @@ module.exports = merge(common, {
         collapseWhitespace: true,
       },
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new Dotenv({
+      defaults: path.resolve(__dirname, './.env'),
+      path: path.resolve(__dirname, './.env.production')
+    }),
   ],
   optimization: {
     minimizer: [

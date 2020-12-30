@@ -54,7 +54,11 @@ module.exports = merge(common, {
       inject: 'body',
       hash: false
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      defaults: path.resolve(__dirname, './.env'),
+      path: path.resolve(__dirname, './.env.development')
+    })
   ]
 
 });

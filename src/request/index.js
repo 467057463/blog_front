@@ -1,6 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
+
+console.log(process.env.API_BASE_URL)
 const axiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: process.env.API_BASE_URL,
   timeout: 40000,
   headers: { 
     'Content-type': 'application/json;charset=UTF-8'
