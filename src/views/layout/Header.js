@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default observer(() => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return(
     <div className="header">
@@ -13,10 +13,11 @@ export default observer(() => {
       </ul>
       { user
         ? (
-            <>
-              <Link to={'/users/' + user._id}>{user.username}</Link>
-              <Link to="/articles/new">发布文章</Link>
-            </>
+            <ul>
+              <li><Link to={'/users/' + user._id}>{user.username}</Link></li>
+              <li><Link to="/articles/new">发布文章</Link></li>
+              <li onClick={()=> logout()}>退出登录</li>
+            </ul>
           )
         : (
             <div>

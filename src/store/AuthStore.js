@@ -16,7 +16,7 @@ export const AuthStore = types
           _id: 'safaa',
           username: 'mm'
         }
-        localStorage.setItem('token', res.data.access_token)
+        localStorage.setItem('access_token', res.data.access_token)
         self.isLoading = false;
         alert('登录成功')
         history.replace('/')
@@ -26,8 +26,14 @@ export const AuthStore = types
         self.isLoading = false;
       }
     }),
+    logout: flow(function* logout(){
+      alert('退出登录成功')
+      self.user = null;
+      localStorage.removeItem('access_token')
+      history.replace('/')
+    }),
     getCurrentUser: flow(function* getCurrentUser(){
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('access_token');
       if(token){
         self.user = {
           _id: 'safaa',

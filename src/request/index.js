@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { getToken } from '@/utils';
 
-console.log(process.env.API_BASE_URL)
 const axiosInstance = axios.create({
   baseURL: process.env.API_BASE_URL,
   timeout: 40000,
@@ -15,11 +15,10 @@ const axiosInstance = axios.create({
 
 // 添加请求拦截器
 axiosInstance.interceptors.request.use(config => {
-  // 添加请求头
-  // config.headers.post['Content-type'] = 'application/json;charset=UTF-8'
-  // if(getToken()){
-  //   config.headers.post['token'] = getToken()
-  // }
+  // 添加token
+  if(getToken()){
+    config.headers['Authorization'] = `Bearer ${getToken()}`
+  }
   return config
 })
 
