@@ -7,27 +7,23 @@ export const ArticlesStore = types
     state: 'pending',
     page: 1,
     quantity: 10,
-    list: types.array(Article)
+    list: types.array(Article),
+    count: 0
   })
-  .views(self => ({
-    get count(){
-      return self.list.length;
-    }
-  }))
   .actions(self => ({
     fetchArticles: flow(function* fetchArticles() { 
       self.list = []
       self.state = "pending"
       try {
         const res = yield getArticleList();
-        console.log(res)
-        self.list = res.data;
+        self.list = res.data.list;
+        self.page = res.data.page;
+        self.quantity = res.data.quantity;
+        self.count = res.data.count;
         self.state = "done"
       } catch (error) {
         console.error("Failed to fetch projects", error)
         self.state = "error"
       }
-    }),
-    
-
+    })  
   }))

@@ -14,7 +14,7 @@ export default observer(() => {
       { user
         ? (
             <ul>
-              <li><Link to={'/users/' + user._id}>{user.username}</Link></li>
+              <li><Link to={'/users/' + user._id}>{user.name}</Link></li>
               <li><Link to="/articles/new">发布文章</Link></li>
               <li onClick={()=> logout()}>退出登录</li>
             </ul>

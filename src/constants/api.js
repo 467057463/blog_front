@@ -5,5 +5,6 @@ export default {
   ARTICLE_UPDATE: '/articles/:id',
   ARTICLE_DELETE: '/articles/:id',
   ARTICLE_LIKE: '/articles/:id/like',
-  LOGION: '/user/login'
+  LOGION: '/user/login',
+  CURRENT_USER: '/user/current',
 }
