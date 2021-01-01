@@ -1,22 +1,12 @@
 import React, { useEffect } from 'react';
-import { values, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import ArticleItem from './components/ArticleItem';
 import { useStore } from '@/hook/useStore';
-import { List, Avatar, Space } from 'antd';
+import { List, Avatar, Space, Image  } from 'antd';
 import { MessageOutlined, LikeOutlined, ReadOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'https://ant.design',
-    title: `ant design part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
+
 
 const avatar = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
 const IconText = ({ icon, text }) => (
@@ -46,20 +36,16 @@ export default observer(()=>{
     <div className='home'>
       <List
         itemLayout="vertical"
-        size="large"
-        pagination={{
-          onChange: page => {
-            console.log(page);
-          },
-          pageSize: 3,
-        }}
+        size="large"        
         dataSource={articles.list}
         renderItem={item => (
           <List.Item
             key={item.title}
             extra={
-              <img
-                width={272}
+              <Image
+                preview={false}
+                height={100}
+                width={150}
                 alt="logo"
                 src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
               />
@@ -71,10 +57,11 @@ export default observer(()=>{
             ]}
           >
             <List.Item.Meta
-              avatar={<Avatar src={avatar} />}
-              title={<a>{item.title}</a>}
+              avatar={<Avatar size={46} src={avatar} />}
+              title={<Link to={`/articles/${item._id}`}>{item.title}</Link>}
+              description="m2 发布于：2020/12/31"
             />
-            {item.content}
+            <p className="content">{item.content}</p>
           </List.Item>
         )}
       />        

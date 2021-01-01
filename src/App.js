@@ -62,7 +62,7 @@ function App() {
             />    
           </Switch>
         </Content>
-        <Footer>sss</Footer> 
+        <Footer style={{textAlign: 'center'}}>m2-个人博客</Footer> 
       </Layout>           
     </Layout>
   );
