@@ -1,6 +1,7 @@
 import { flow, types } from "mobx-state-tree";
 import { login, getCurrentUserInfo } from '@/request/auth';
 import history from '@/hook/history';
+import { message } from 'antd';
 
 export const AuthStore = types
   .model('LoginStore', {
@@ -15,16 +16,16 @@ export const AuthStore = types
         self.user = res.data.user;
         localStorage.setItem('access_token', res.data.access_token)
         self.isLoading = false;
-        alert('登录成功')
+        message.info('登录成功')
         history.replace('/')
       }catch(error){
         console.log(error)
-        alert(error.message)
+        message.error(error.message)
         self.isLoading = false;
       }
     }),
     logout: flow(function* logout(){
-      alert('退出登录成功')
+      message.info('退出登录成功')
       self.user = null;
       localStorage.removeItem('access_token')
       history.replace('/')
