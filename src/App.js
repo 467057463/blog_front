@@ -25,7 +25,7 @@ function App() {
     <Layout className="app">
       <Layout>
         <Header/>
-        <Content style={{paddingTop: '45px'}}>
+        <Content style={{paddingTop: '50px'}}>
           <Switch>
             <Route
               path="/"

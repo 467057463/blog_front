@@ -7,18 +7,27 @@ import { Layout, Avatar, Drawer } from 'antd';
 const { Header } = Layout;
 import { EditOutlined, ImportOutlined, UserOutlined  } from '@ant-design/icons';
 import Logo from '@/images/logo.png';
-const avatar = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
+import avatar from '@/images/avatar.jpg';
+
 
 export default observer(({collapsed, setCollapsed}) => {
   const { user, logout } = useAuth();
 
   const [visible, setVisible] = useState(false);
+
+
+
   const showDrawer = () => {
     setVisible(true);
   };
   const onClose = () => {
     setVisible(false);
   };
+
+  function handleLogout(){
+    setVisible(false);
+    logout()
+  }
 
   return(
     <Header the className="header">    
@@ -48,14 +57,14 @@ export default observer(({collapsed, setCollapsed}) => {
               <li>
                 <Link to={'/users/' + user._id}><Avatar size={100} src={avatar}/></Link>
               </li>
-              <li>
+              <li style={{paddingTop: '5px'}}>
                 {user.name}
               </li>
             </ul>
 
             <ul className="user-link">
-              <li><EditOutlined /> <Link to="/articles/new">发布文章</Link></li>
-              <li onClick={()=> logout()}><ImportOutlined />退出登录</li>
+              <li><EditOutlined /> <Link onClick={onClose} to="/articles/new">发布文章</Link></li>
+              <li onClick={handleLogout}><ImportOutlined />退出登录</li>
             </ul>
           </Drawer>
         }        

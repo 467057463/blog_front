@@ -5,10 +5,10 @@ import { useStore } from '@/hook/useStore';
 import { List, Avatar, Space, Image  } from 'antd';
 import { MessageOutlined, LikeOutlined, ReadOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import Loading from '@/components/Loading';
+import avatar from '@/images/avatar.jpg';
+import exartImage from '@/images/2020.jpg';
 
-
-
-const avatar = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
 const IconText = ({ icon, text }) => (
   <Space>
     {React.createElement(icon)}
@@ -25,7 +25,7 @@ export default observer(()=>{
 
   
   if(articles.state === 'pending'){
-    return <div className='loading'>loading...</div>
+    return <Loading/>
   }
 
   if(articles.state === 'error'){
@@ -47,7 +47,7 @@ export default observer(()=>{
                 height={100}
                 width={150}
                 alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                src={exartImage}
               />
             }
             actions={[
@@ -65,10 +65,6 @@ export default observer(()=>{
           </List.Item>
         )}
       />        
-      {/* {articles.list.map(item => (
-        <ArticleItem key={item._id} article={item}/>
-      ))}
-      <span>共{articles.count}数据</span> */}
     </div>
   )
 })
