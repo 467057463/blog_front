@@ -4,15 +4,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from 'antd';
 const { Header } = Layout;
+import { BarsOutlined, CloseOutlined } from '@ant-design/icons';
+import Logo from '@/images/logo.png';
 
-export default observer(() => {
+export default observer(({collapsed, setCollapsed}) => {
   const { user, logout } = useAuth();
 
   return(
     <Header className="header">
-      <ul>
-        <li><Link to="/">首页</Link></li>
-      </ul>
+      <span onClick={() => setCollapsed(!collapsed)}>
+        { collapsed ? <BarsOutlined /> : <CloseOutlined />}
+      </span>
+      <Link to='/'><img className='logo' src={Logo}/></Link>
+
       { user
         ? (
             <ul>

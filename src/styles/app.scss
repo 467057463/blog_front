@@ -1,6 +1,19 @@
+@import '~antd/dist/antd.css';
 @import './iconfont.scss';
-
 body{
   padding: 0;
   margin: 0;
+}
+#root{
+  height: 100%;
+  display: flex;
+}
+
+.header{
+  color: white;
+  padding: 0 20px;
+  .logo{
+    height: 32px;
+    margin-left: 15px;
+  }
 }
