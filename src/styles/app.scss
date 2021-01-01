@@ -1,8 +1,9 @@
 @import '~antd/dist/antd.css';
 @import './iconfont.scss';
-body{
+body, html{
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 #root{
   height: 100%;
@@ -12,6 +13,12 @@ body{
 .header{
   color: white;
   padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  .collapse{
+    cursor: pointer;
+    font-size: 22px;
+  }
   .logo{
     height: 32px;
     margin-left: 15px;

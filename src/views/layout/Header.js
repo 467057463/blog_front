@@ -2,9 +2,10 @@ import { useAuth } from '@/hook/useAuth';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout } from 'antd';
+
+import { Layout, Avatar } from 'antd';
 const { Header } = Layout;
-import { BarsOutlined, CloseOutlined } from '@ant-design/icons';
+import { BarsOutlined, CloseOutlined, UserOutlined  } from '@ant-design/icons';
 import Logo from '@/images/logo.png';
 
 export default observer(({collapsed, setCollapsed}) => {
@@ -12,7 +13,7 @@ export default observer(({collapsed, setCollapsed}) => {
 
   return(
     <Header className="header">
-      <span onClick={() => setCollapsed(!collapsed)}>
+      <span className="collapse" onClick={() => setCollapsed(!collapsed)}>
         { collapsed ? <BarsOutlined /> : <CloseOutlined />}
       </span>
       <Link to='/'><img className='logo' src={Logo}/></Link>
@@ -26,10 +27,7 @@ export default observer(({collapsed, setCollapsed}) => {
             </ul>
           )
         : (
-            <div>
-              没有登录
-              <Link to="/login">登录</Link>
-            </div>
+            <Link to="/login"><Avatar icon={<UserOutlined />}/></Link>
           )
       }
     </Header>
