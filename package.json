@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.14.1",
+    "antd": "^4.9.4",
     "axios": "^0.21.1",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",

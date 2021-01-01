@@ -5,6 +5,7 @@ import loadable from '@loadable/component';
 import Header from '@/views/layout/Header';
 import { useStore } from '@/hook/useStore';
 
+import { Layout } from 'antd';
 import '@/styles/app.scss';
 
 
@@ -18,7 +19,7 @@ function App() {
     AppStart();
   }, [])
   return (
-    <div className="app">
+    <Layout className="app">
       <Header/>
       <Switch>
         <Route
@@ -42,7 +43,7 @@ function App() {
           )}
         />    
       </Switch>
-    </div>
+    </Layout>
   );
 }
 
