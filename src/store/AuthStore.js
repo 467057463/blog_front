@@ -1,5 +1,5 @@
 import { flow, types } from "mobx-state-tree";
-import { login } from '@/request/auth';
+import { login, getCurrentUserInfo } from '@/request/auth';
 import history from '@/hook/history';
 
 export const AuthStore = types
@@ -12,11 +12,8 @@ export const AuthStore = types
       self.isLoading = true;
       try{
         const res = yield login(data);
-        self.user = {
-          _id: 'safaa',
-          username: 'mm'
-        }
-        localStorage.setItem('token', res.data.access_token)
+        self.user = res.data.user;
+        localStorage.setItem('access_token', res.data.access_token)
         self.isLoading = false;
         alert('登录成功')
         history.replace('/')
@@ -26,13 +23,20 @@ export const AuthStore = types
         self.isLoading = false;
       }
     }),
+    logout: flow(function* logout(){
+      alert('退出登录成功')
+      self.user = null;
+      localStorage.removeItem('access_token')
+      history.replace('/')
+    }),
     getCurrentUser: flow(function* getCurrentUser(){
-      const token = localStorage.getItem('token');
-      if(token){
-        self.user = {
-          _id: 'safaa',
-          username: 'mm'
-        }
+      const token = localStorage.getItem('access_token');
+      if(!token) return;
+      try{
+        const res = yield getCurrentUserInfo();
+        self.user = res.data.user;
+      }catch(error){
+        console.log(error)
       }
     })
   }))

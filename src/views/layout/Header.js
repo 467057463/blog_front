@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 const { Header } = Layout;
 
 export default observer(() => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return(
     <Header className="header">
@@ -15,10 +15,11 @@ export default observer(() => {
       </ul>
       { user
         ? (
-            <>
-              <Link to={'/users/' + user._id}>{user.username}</Link>
-              <Link to="/articles/new">发布文章</Link>
-            </>
+            <ul>
+              <li><Link to={'/users/' + user._id}>{user.name}</Link></li>
+              <li><Link to="/articles/new">发布文章</Link></li>
+              <li onClick={()=> logout()}>退出登录</li>
+            </ul>
           )
         : (
             <div>
