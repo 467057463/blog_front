@@ -16,29 +16,16 @@ function App() {
   }
   const { auth } = useStore();
 
-  const [ collapsed, setCollapsed ] = useState(false)
-
   useEffect(()=> {
     AppStart();
   }, [])
 
-  function onCollapse(collapsed){
-    setCollapsed(collapsed)
-  }
+
   return (
     <Layout className="app">
-      <Sider 
-        theme="light"
-        collapsedWidth="0" 
-        breakpoint="lg" 
-        trigger={null} 
-        collapsible 
-        collapsed={collapsed} 
-        onCollapse={onCollapse}
-      >silder</Sider>
       <Layout>
-        <Header setCollapsed={setCollapsed} collapsed={collapsed}/>
-        <Content>
+        <Header/>
+        <Content style={{paddingTop: '45px'}}>
           <Switch>
             <Route
               path="/"
