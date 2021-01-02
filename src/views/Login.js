@@ -8,13 +8,8 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 export default observer(() => {
   const { auth } = useStore();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
   function submit(values){
-    // console.log(values)
-    // event.preventDefault();
-    // console.log(username, password);
     auth.login(values)
   }
 

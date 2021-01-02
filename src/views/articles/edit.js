@@ -1,32 +1,42 @@
-import { useStore } from '@/hook/useStore';
+import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import { useStore } from '@/hook/useStore';
 
-export default observer(() => {
+import MarkdownShow from '@/components/MarkdownShow';
+import CoderEditor from '@/components/CoderEditor';
+
+
+export default observer(()=> {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { article } = useStore();
   const { params } = useRouteMatch();
 
-
+  
   useEffect(async ()=> {
-    const res = await article.fetchSource(params.id);
-    setTitle(res.data.title);
-    setContent(res.data.content);
+    if(params.id){
+      const res = await article.fetchSource(params.id);
+      setTitle(res.data.title);
+      setContent(res.data.content);
+    }
   }, [])
 
   function submit(event){
-    event.preventDefault();
-    article.update(params.id, {
+    const data = {
       title,
       content
-    })
+    }
+    event.preventDefault();
+    if(params.id){
+      article.update(params.id, data)
+    }else{
+      article.create(data)
+    }
   }
 
   return(
-    <div className='articles-edit'>
-      <b>编辑文章</b>      
+    <div className='article-form'>
       <form onSubmit={submit}>
         <div>
           <label>标题：</label>
@@ -37,17 +47,10 @@ export default observer(() => {
             onChange={(event)=>setTitle(event.target.value)}
           />
         </div>
-
-        <div>
-          <label>内容：</label>
-          <textarea 
-            name="content"
-            onChange={(event)=>setContent(event.target.value)}
-            value={content}
-          ></textarea>
-        </div>
+        <MarkdownShow content={content}/>
+        <CoderEditor content={content} setContent={setContent}/> 
         <button type="submit">更新</button>
-      </form>
+      </form>     
     </div>
   )
 })

@@ -10,6 +10,7 @@ const { Title, Paragraph, Text } = Typography;
 import { MessageOutlined, LikeOutlined, ReadOutlined, FieldTimeOutlined } from '@ant-design/icons';
 import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
+import MarkdownShow from '@/components/MarkdownShow';
 
 export default observer(() => {
   const { article } = useStore();
@@ -52,7 +53,9 @@ export default observer(() => {
           </ul>
         </div>
 
-        <Paragraph className='content'>{article.detail.content}</Paragraph>
+        <Paragraph className='content'>
+          <MarkdownShow content={article.detail.content}/>
+        </Paragraph>
 
         <div className='meta'>    
           <div className='meta-data'>           

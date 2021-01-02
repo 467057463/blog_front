@@ -49,7 +49,7 @@ function App() {
             />    
           </Switch>
         </Content>
-        <Footer style={{textAlign: 'center'}}>m2-个人博客</Footer> 
+        {/* <Footer style={{textAlign: 'center'}}>m2-个人博客</Footer>  */}
       </Layout>           
     </Layout>
   );
