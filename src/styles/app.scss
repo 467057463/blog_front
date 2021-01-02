@@ -3,7 +3,7 @@
 body, html{
   padding: 0;
   margin: 0;
-  height: 100%;
+  min-height: 100%;
 }
 #root{
   height: 100%;
@@ -123,8 +123,18 @@ p.content{
     display: block;
   }
 }
-.ant-layout, .ant-layout-footer{
+.ant-layout-content{
+  min-height: auto;
+}
+.ant-layout{
   background: transparent;
+}
+.ant-layout-footer{
+  padding: 10px 0 20px;
+  border-top: 6px solid #F5F6F7;
+  background: transparent;
+  color: #CCCCCC;
+  font-size: 12px;
 }
 
 // 登录
@@ -180,8 +190,12 @@ p.content{
   .ant-space + .ant-space{
     margin-left: 15px;
   }
+  h3.ant-typography{
+    font-size: 24px;
+    font-weight: normal;
+  }
   .content{
-    font-size: 16px;
+    font-size: 18px;
     white-space: break-spaces;
   }
 }
