@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Layout, Avatar, Drawer } from 'antd';
+import { Layout, Avatar, Drawer, Badge } from 'antd';
 const { Header } = Layout;
 import { EditOutlined, ImportOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
 import Logo from '@/images/logo.png';
@@ -39,14 +39,16 @@ export default observer(({collapsed, setCollapsed}) => {
         <div className="right-actions">
           { user
             ? (             
-                <Avatar onClick={showDrawer} size={28} src={avatar}/>
+                <Avatar onClick={showDrawer} size={22} src={avatar}/>
               )
             : (
                 <Link to="/login"><UserOutlined/></Link>
               )
           }
           <div className="menu-btn">
-            <MenuOutlined />
+            <Badge dot>
+              <MenuOutlined />
+            </Badge>
           </div>
         </div>
       </div>      
