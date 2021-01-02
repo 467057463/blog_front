@@ -20,7 +20,7 @@ export default observer(() => {
 
   return (
     <div className='login'>
-      <Form onFinish={submit}>
+      <Form size='large' onFinish={submit}>
         <Form.Item
           name="username"
           rules={[
