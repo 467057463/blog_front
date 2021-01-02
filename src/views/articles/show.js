@@ -7,7 +7,7 @@ import Comment from './components/Comment';
 import Loading from '@/components/Loading';
 import { Typography, Divider, Space, Avatar } from 'antd';
 const { Title, Paragraph, Text } = Typography;
-import { MessageOutlined, LikeOutlined, ReadOutlined } from '@ant-design/icons';
+import { MessageOutlined, LikeOutlined, ReadOutlined, FieldTimeOutlined } from '@ant-design/icons';
 import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
 
@@ -36,25 +36,30 @@ export default observer(() => {
         <div className='author'>
           <Avatar size={36} src={avatar} />
           <ul>
-            <li><Link className="author-name" to={'/users/' + article.detail.author._id}>{article.detail.author.username}</Link></li>
-            <li>发布于：{moment(article.detail.createdAt).format('YYYY年MM月DD日')}</li>
+            <li>
+              <Link className="author-name" to={'/users/' + article.detail.author._id}>{article.detail.author.username}</Link>
+            </li>
+            <li>
+              <Space>
+                <FieldTimeOutlined />
+                {moment(article.detail.createdAt).format('YYYY年MM月DD日')}
+              </Space>
+              <Space>
+                <ReadOutlined />
+                {article.detail.meta.view}
+              </Space>
+            </li>
           </ul>
         </div>
 
+        <Paragraph className='content'>{article.detail.content}</Paragraph>
+
         <div className='meta'>    
-          <div className='meta-data'>
-            <Space>
-              <ReadOutlined/>
-              {article.detail.meta.view}
-            </Space>
+          <div className='meta-data'>           
             <Space>
               <LikeOutlined/>
               {article.detail.meta.like}
             </Space>
-            <Space>
-              <MessageOutlined/>
-              {article.detail.comments.length}
-            </Space>    
           </div>    
 
           {
@@ -75,7 +80,6 @@ export default observer(() => {
 
 
       
-      <Paragraph className='content'>{article.detail.content}</Paragraph>
 
       {/* <h2>评论列表</h2>
       <span>共{article.detail.commentCount}条评论</span>      

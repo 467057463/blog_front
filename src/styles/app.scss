@@ -139,7 +139,7 @@ p.content{
 .article_show{
   padding: 15px;
   .meta{
-    border-bottom: 1px solid #0000000f;
+    // border-bottom: 1px solid #0000000f;
     // border-top: 1px solid #0000000f;
     height: 40px;
     display: flex;
@@ -162,6 +162,7 @@ p.content{
   .author{
     display: flex;
     align-items: center;
+    margin: 20px 0;
     ul{
       margin: 0;
       list-style: none;
