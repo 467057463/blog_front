@@ -135,3 +135,22 @@ p.content{
     width: 100%;
   }
 }
+// 
+.article_show{
+  padding: 15px;
+  .meta{
+    border-bottom: 1px solid #0000000f;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    ul{
+      float: right;
+      li{
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+  }
+  .ant-space + .ant-space{
+    margin-left: 10px;
+  }
+}
