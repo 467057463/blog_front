@@ -140,17 +140,47 @@ p.content{
   padding: 15px;
   .meta{
     border-bottom: 1px solid #0000000f;
-    padding-bottom: 10px;
+    // border-top: 1px solid #0000000f;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+    // margin-top: 10px;
+    color: #8A8F9B;
+    
     ul{
-      float: right;
+      display: flex;
+      align-items: center;
+      margin: 0;
       li{
         display: inline-block;
         margin-left: 10px;
       }
     }
   }
+  .author{
+    display: flex;
+    align-items: center;
+    ul{
+      margin: 0;
+      list-style: none;
+      .author-name{
+        font-size: 16px;
+        font-weight: 400;
+        color: #000;
+      }
+      li{
+        margin-left: 4px;
+        color: #8A8F9B;
+      }
+    }
+  }
   .ant-space + .ant-space{
-    margin-left: 10px;
+    margin-left: 15px;
+  }
+  .content{
+    font-size: 16px;
+    white-space: break-spaces;
   }
 }

@@ -5,9 +5,11 @@ import React, { useEffect } from 'react';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import Comment from './components/Comment';
 import Loading from '@/components/Loading';
-import { Typography, Divider, Space } from 'antd';
+import { Typography, Divider, Space, Avatar } from 'antd';
 const { Title, Paragraph, Text } = Typography;
 import { MessageOutlined, LikeOutlined, ReadOutlined } from '@ant-design/icons';
+import avatar from '@/images/avatar.jpg';
+import moment from 'moment';
 
 export default observer(() => {
   const { article } = useStore();
@@ -30,53 +32,50 @@ export default observer(() => {
   return (
     <div className="article_show">
       <Typography>
-        <Title level={4}>{article.detail.title}</Title>
-        <div className='meta'>
-          <Space>
-            <ReadOutlined/>
-            {article.detail.meta.view}
-          </Space>
-          <Space>
-            <LikeOutlined/>
-            {article.detail.meta.like}
-          </Space>
-          <Space>
-            <MessageOutlined/>
-            {article.detail.comments.length}
-          </Space>
+        <Title level={3}>{article.detail.title}</Title>
+        <div className='author'>
+          <Avatar size={36} src={avatar} />
           <ul>
-            {/* {
-              user &&
-              <li>
-                <a onClick={() => article.like(id)}>点赞</a>
-              </li>
-            }   */}
-            {
-              user &&
-              <>
-                <li>
-                  <Link to={`${match.url}/edit`}>编辑</Link>
-                </li>
-                <li>
-                  <a onClick={() => article.delete(id)}>删除</a>
-                </li>
-              </>
-            }        
-          </ul>          
+            <li><Link className="author-name" to={'/users/' + article.detail.author._id}>{article.detail.author.username}</Link></li>
+            <li>发布于：{moment(article.detail.createdAt).format('YYYY年MM月DD日')}</li>
+          </ul>
         </div>
+
+        <div className='meta'>    
+          <div className='meta-data'>
+            <Space>
+              <ReadOutlined/>
+              {article.detail.meta.view}
+            </Space>
+            <Space>
+              <LikeOutlined/>
+              {article.detail.meta.like}
+            </Space>
+            <Space>
+              <MessageOutlined/>
+              {article.detail.comments.length}
+            </Space>    
+          </div>    
+
+          {
+            user &&
+            <ul>
+              <li>
+                <Link to={`${match.url}/edit`}>编辑</Link>
+              </li>
+              <li>
+                <a onClick={() => article.delete(id)}>删除</a>
+              </li>
+            </ul>
+          } 
+        </div>        
       </Typography>
+
   
 
 
-      <div className="meta-info">
-        {/* <Link to={'/users/' + article.detail.author._id}>{article.detail.author.username}</Link> */}
-        {/* <span>评论：{article.detail.commentCount}</span> */}
-        {/* <span>浏览：{article.detail.meta.view}</span> */}
-        {/* <span>点赞：{article.detail.meta.like}</span> */}
-        {/* <span>发布时间：{article.detail.createdAt}</span> */}
-      </div>
       
-      <Paragraph>{article.detail.content}</Paragraph>
+      <Paragraph className='content'>{article.detail.content}</Paragraph>
 
       {/* <h2>评论列表</h2>
       <span>共{article.detail.commentCount}条评论</span>      
