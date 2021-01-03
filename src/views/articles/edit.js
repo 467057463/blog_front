@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useRouteMatch } from 'react-router-dom';
 import { useStore } from '@/hook/useStore';
+import { Button, Input } from 'antd';
 
 import MarkdownShow from '@/components/MarkdownShow';
 import CoderEditor from '@/components/CoderEditor';
-
+import { EditOutlined, FileSearchOutlined, SaveOutlined } from '@ant-design/icons';
 
 export default observer(()=> {
+  const [ isEdit, setIsEdit] = useState(true);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { article } = useStore();
@@ -38,18 +40,41 @@ export default observer(()=> {
   return(
     <div className='article-form'>
       <form onSubmit={submit}>
-        <div>
-          <label>标题：</label>
-          <input 
-            type="text" 
-            name="title"
-            value={title}
-            onChange={(event)=>setTitle(event.target.value)}
-          />
-        </div>
-        <MarkdownShow content={content}/>
-        <CoderEditor content={content} setContent={setContent}/> 
-        <button type="submit">更新</button>
+        {
+          isEdit ? 
+            <div className='edit'>
+              <Input 
+                className='title-input'
+                size="large" 
+                placeholder="文章标题" 
+                value={title}
+                onChange={(event)=>setTitle(event.target.value)}
+              />
+              <CoderEditor content={content} setContent={setContent}/> 
+            </div>
+          :
+            <div className='prview'>
+              <MarkdownShow content={content}/>
+            </div>
+        }     
+
+        <Button 
+          className="prview-btn"
+          type="primary" 
+          shape="circle"
+          onClick={() => {setIsEdit(!isEdit)}} 
+          icon={
+            !isEdit ? <EditOutlined /> : <FileSearchOutlined />
+          }
+        />
+
+        <Button  
+          className="save-btn"
+          type="primary" 
+          shape="circle"
+          htmlType="submit"
+          icon={<SaveOutlined />}
+        />
       </form>     
     </div>
   )
