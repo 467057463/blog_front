@@ -27,7 +27,7 @@ export default observer(()=> {
   useEffect(() => {
     const height = window.innerHeight - 90 + 'px'
     document.querySelector('.CodeMirror').style.height = height;
-  })
+  }, [])
 
   function submit(event){
     const data = {
