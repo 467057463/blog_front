@@ -29,12 +29,12 @@ export default observer(()=> {
     document.querySelector('.CodeMirror').style.height = height;
   }, [])
 
-  function submit(event){
+  function submit(){
     const data = {
       title,
       content
     }
-    event.preventDefault();
+    // event.preventDefault();
     if(params.id){
       article.update(params.id, data)
     }else{
@@ -44,7 +44,7 @@ export default observer(()=> {
 
   return(
     <div className='article-edit'>
-      <Form onSubmit={submit}>
+      <Form onFinish={submit}>
         {
           isEdit ? 
             <div className='edit-wrapper'>
