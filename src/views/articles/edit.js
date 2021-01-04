@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, Link } from 'react-router-dom';
 import { useStore } from '@/hook/useStore';
-import { Form, Button, Input } from 'antd';
+import { useAuth } from '@/hook/useAuth';
+import { Form, Button, Input, Typography, Avatar, Space } from 'antd';
 
 import MarkdownShow from '@/components/MarkdownShow';
 import CoderEditor from '@/components/CoderEditor';
-import { EditOutlined, FileSearchOutlined, SaveOutlined } from '@ant-design/icons';
+import { EditOutlined, FileSearchOutlined, SaveOutlined, LikeOutlined, ReadOutlined, FieldTimeOutlined } from '@ant-design/icons';
+
+const { Title, Paragraph, Text } = Typography;
+import avatar from '@/images/avatar.jpg';
+import moment from 'moment';
+
+function setCodeHeight(){
+  const height = window.innerHeight - 90 + 'px'
+  document.querySelector('.CodeMirror').style.height = height;
+}
 
 export default observer(()=> {
   const [ isEdit, setIsEdit] = useState(true);
@@ -14,7 +24,7 @@ export default observer(()=> {
   const [content, setContent] = useState('');
   const { article } = useStore();
   const { params } = useRouteMatch();
-
+  const { user } = useAuth();
   
   useEffect(async ()=> {
     if(params.id){
@@ -25,8 +35,13 @@ export default observer(()=> {
   }, [])
 
   useEffect(() => {
-    const height = window.innerHeight - 90 + 'px'
-    document.querySelector('.CodeMirror').style.height = height;
+    setCodeHeight()
+    window.onresize = function(){
+      setCodeHeight()
+    }
+    return () => {
+      window.onresize = null;
+    }
   }, [])
 
   function submit(){
@@ -58,8 +73,41 @@ export default observer(()=> {
               <CoderEditor content={content} setContent={setContent}/> 
             </div>
           :
-            <div className='prview-wrapper'>
-              <MarkdownShow content={content}/>
+            <div className='prview-wrapper article_show'>
+              <Typography>
+                <Title level={3}>{article.detail.title}</Title>
+                <div className='author'>
+                  <Avatar size={36} src={avatar} />
+                  <ul>
+                    <li>
+                      <Link className="author-name" to='#'>{user.name}</Link>
+                    </li>
+                    <li>
+                      <Space>
+                        <FieldTimeOutlined />
+                        {moment().format('YYYY年MM月DD日')}
+                      </Space>
+                      <Space>
+                        <ReadOutlined />
+                        0
+                      </Space>
+                    </li>
+                  </ul>
+                </div>
+
+                <Paragraph className='content'>
+                  <MarkdownShow content={content}/>
+                </Paragraph>
+
+                <div className='meta'>    
+                  <div className='meta-data'>           
+                    <Space>
+                      <LikeOutlined/>
+                      0
+                    </Space>
+                  </div>    
+                </div>                
+              </Typography>
             </div>
         }     
 
