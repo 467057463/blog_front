@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useRouteMatch } from 'react-router-dom';
 import { useStore } from '@/hook/useStore';
-import { Button, Input } from 'antd';
+import { Form, Button, Input } from 'antd';
 
 import MarkdownShow from '@/components/MarkdownShow';
 import CoderEditor from '@/components/CoderEditor';
@@ -38,11 +38,11 @@ export default observer(()=> {
   }
 
   return(
-    <div className='article-form'>
-      <form onSubmit={submit}>
+    <div className='article-edit'>
+      <Form onSubmit={submit}>
         {
           isEdit ? 
-            <div className='edit'>
+            <div className='edit-wrapper'>
               <Input 
                 className='title-input'
                 size="large" 
@@ -53,7 +53,7 @@ export default observer(()=> {
               <CoderEditor content={content} setContent={setContent}/> 
             </div>
           :
-            <div className='prview'>
+            <div className='prview-wrapper'>
               <MarkdownShow content={content}/>
             </div>
         }     
@@ -75,7 +75,7 @@ export default observer(()=> {
           htmlType="submit"
           icon={<SaveOutlined />}
         />
-      </form>     
+      </Form>     
     </div>
   )
 })

@@ -9,7 +9,7 @@ export default ({content, setContent}) => {
       value={content}
       options={{
         mode: 'markdown',
-        theme: 'mdn-like',
+        theme: 'material-palenight',
         lineNumbers: true
       }}
       onBeforeChange={(editor, data, value) => {

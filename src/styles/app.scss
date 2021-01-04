@@ -2,8 +2,10 @@
 @import './iconfont.scss';
 
 @import '~codemirror/lib/codemirror.css';
-@import '~codemirror/theme/mdn-like.css';
+@import '~codemirror/theme/material-palenight.css';
 @import '~github-markdown-css/github-markdown.css';
+
+@import './pages/article-edit';
 
 // .markdown-body {
 //   box-sizing: border-box;
@@ -216,47 +218,5 @@ p.content{
   .content{
     font-size: 18px;
     white-space: break-spaces;
-  }
-}
-
-// article-form
-.article-form{
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  .prview-btn,
-  .save-btn{
-    position: fixed;
-    right: 15px;
-    bottom: 20px;
-  }
-  .prview-btn{
-    bottom: 60px;
-  }
-  .title-input{
-    border-radius: 0;
-    border-color: transparent;
-    border-bottom-color: #eee;
-  }
-  form{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .edit{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .react-codemirror2{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .CodeMirror{
-    flex: 1;
-  }
-  form, .edit, .prview{
-    flex: 1;
   }
 }
