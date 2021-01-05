@@ -1,6 +1,7 @@
 import { getArticle, createArticle, updateArticle, deleteArticle, likeArticle} from "@/request/articles";
 import { flow, types } from "mobx-state-tree";
 import history from '@/hook/history';
+import { message } from 'antd';
 
 export const Article = types
   .model('Article', {
@@ -49,7 +50,7 @@ export const ArticleStore = types
     create: flow(function* create(data) {
       try{
         const res = yield createArticle(data);
-        alert('文章发布成功')
+        message.info('文章发布成功')
         history.replace(`/articles/${res.data._id}`)
       }catch(error){
         console.error("Failed to fetch projects", error)
@@ -59,7 +60,7 @@ export const ArticleStore = types
     update: flow(function* update(id, data){
       try{
         const res = yield updateArticle(id, data);
-        alert('文章更新成功')
+        message.info('文章更新成功')
         history.replace(`/articles/${res.data._id}`)
       }catch(error){
         console.error("Failed to fetch projects", error)
@@ -69,7 +70,7 @@ export const ArticleStore = types
     delete: flow(function* (id){
       try{
         const res = yield deleteArticle(id);
-        alert('文章已删除')
+        message.info('文章已删除')
         history.replace('/')
       }catch(error){
         console.error("Failed to fetch projects", error)
@@ -79,7 +80,7 @@ export const ArticleStore = types
     like: flow(function* like(id){
       try{
         const res = yield likeArticle(id);
-        alert(res.message)     
+        message.info(res.message)     
       }catch(error){
         console.error("Failed to fetch projects", error)
       }

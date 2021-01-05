@@ -1,25 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { observer } from 'mobx-react';
+import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
-import loadable from '@loadable/component';
-import Header from '@/views/layout/Header';
-import { useStore } from '@/hook/useStore';
-
 import { Layout } from 'antd';
+import loadable from '@loadable/component';
+
+import Header from '@/views/layout/Header';
+import Loading from '@/components/Loading';
+
+import { useStore } from '@/hook/useStore';
 import '@/styles/app.scss';
 
 const {  Footer, Sider, Content } = Layout;
 
-function App() {
-  function AppStart(){
-    auth.getCurrentUser();
-  }
+const App = observer(() => {
+  const [ state, setState ] = useState('pending')
   const { auth } = useStore();
 
   useEffect(()=> {
     AppStart();
   }, [])
 
+  async function AppStart(){
+    setState('pending')
+    try{
+      await auth.getCurrentUser();
+      setState('success')
+    }catch(error){
+      setState('error')
+    }
+  }
+
+  if(state === 'pending'){
+    return <Loading/>
+  }
+
+  if(state === 'error'){
+    return <div className='error'>error...</div>
+  }
 
   return (
     <Layout className="app">
@@ -53,6 +71,6 @@ function App() {
       </Layout>           
     </Layout>
   );
-}
+})
 
 export default hot(App);

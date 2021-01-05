@@ -36,6 +36,7 @@ export const AuthStore = types
       try{
         const res = yield getCurrentUserInfo();
         self.user = res.data.user;
+        return res;
       }catch(error){
         console.log(error)
       }
