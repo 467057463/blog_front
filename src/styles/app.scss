@@ -3,7 +3,8 @@
 
 @import '~codemirror/lib/codemirror.css';
 @import '~codemirror/theme/material-palenight.css';
-@import '~github-markdown-css/github-markdown.css';
+// @import '~github-markdown-css/github-markdown.css';
+@import './markdown.scss';
 
 @import './pages/article-edit';
 
@@ -136,6 +137,7 @@ p.content{
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 
 .ant-list-item-extra{
