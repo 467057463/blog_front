@@ -3,8 +3,6 @@ import { observer } from 'mobx-react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { useStore } from '@/hook/useStore';
 import { useAuth } from '@/hook/useAuth';
-
-
 import { 
   Form, 
   Button, 
@@ -12,7 +10,8 @@ import {
   Typography, 
   Avatar, 
   Space,
-  Drawer 
+  Drawer,
+  Tree
 } from 'antd';
 import { 
   EditOutlined, 
@@ -26,6 +25,7 @@ import {
 
 import MarkdownShow from '@/components/MarkdownShow';
 import CoderEditor from '@/components/CoderEditor';
+import markMenu from '@/utils/markMenu';
 
 import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
@@ -40,7 +40,8 @@ export default observer(()=> {
   const [ isEdit, setIsEdit] = useState(true);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [ metaVisible, setMetaVisible] = useState(false)
+  const [menu, setMenu] = useState([]);
+  const [ menuVisible, setMenuVisible] = useState(false)
   const { article } = useStore();
   const { params } = useRouteMatch();
   const { user } = useAuth();
@@ -49,7 +50,7 @@ export default observer(()=> {
     if(params.id){
       const res = await article.fetchSource(params.id);
       setTitle(res.data.title);
-      setContent(res.data.content);
+      changeContent(res.data.content);
     }
   }, [])
 
@@ -63,6 +64,11 @@ export default observer(()=> {
     }
   }, [])
 
+  function changeContent(content){
+    setMenu(markMenu(content))
+    setContent(content);
+  }
+
   function submit(){
     const data = {
       title,
@@ -74,6 +80,26 @@ export default observer(()=> {
     }else{
       article.create(data)
     }
+  }
+
+  function generateMenu(data){
+    return (function walk(list){
+      return(
+        <ul>
+          {list.map(item => {
+            return (
+              <li>
+                <a href={`#${item.data.id}`}>{item.value}</a>
+                { 
+                  item.children && item.children.length > 0 &&
+                  walk(item.children)
+                }
+              </li>
+            )
+          })}
+        </ul>
+      )
+    })(data)    
   }
 
   return(
@@ -89,7 +115,7 @@ export default observer(()=> {
                 value={title}
                 onChange={(event)=>setTitle(event.target.value)}
               />
-              <CoderEditor content={content} setContent={setContent}/> 
+              <CoderEditor content={content} setContent={changeContent}/> 
             </div>
           :
             <div className='prview-wrapper article_show'>
@@ -127,16 +153,31 @@ export default observer(()=> {
                   </div>    
                 </div>                
               </Typography>
+
+              <Button
+                size='large'
+                className="meta_info-btn"
+                shape="circle"
+                onClick={() => setMenuVisible(true)}
+                icon={<BarsOutlined />}
+              />
+
+              <Drawer
+                title="文章目录"
+                placement="right"
+                closable={false}
+                onClose={() => setMenuVisible(false)}
+                visible={menuVisible}
+              >
+                <div className='menu'>
+                  {generateMenu(menu)}
+                </div>       
+              </Drawer>      
+
             </div>
         }     
 
-        <Button
-          size='large'
-          className="meta_info-btn"
-          shape="circle"
-          onClick={() => setMetaVisible(true)}
-          icon={<BarsOutlined />}
-        />
+
         <Button 
           size='large'
           className="prview-btn"
@@ -156,19 +197,7 @@ export default observer(()=> {
           htmlType="submit"
           icon={<SaveOutlined />}
         />
-      </Form>     
-      
-      <Drawer
-        title="设置文章相关信息"
-        placement="right"
-        closable={false}
-        onClose={() => setMetaVisible(false)}
-        visible={metaVisible}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>      
+      </Form>
     </div>
   )
 })

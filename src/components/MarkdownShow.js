@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
-import * as slug from 'remark-slug';
+// import * as slug from 'remark-slug';
 import HeadingRenderer from '@/components/HeadingRenderer';
 
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'

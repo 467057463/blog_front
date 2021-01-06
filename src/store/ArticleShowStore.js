@@ -2,6 +2,13 @@ import { getArticle, createArticle, updateArticle, deleteArticle, likeArticle} f
 import { flow, types } from "mobx-state-tree";
 import history from '@/hook/history';
 import { message } from 'antd';
+import markMenu from '@/utils/markMenu';
+
+// remark 相关
+// import * as remark from 'remark';
+// import * as slug from 'remark-slug';
+// import * as extractToc from 'remark-extract-toc';
+
 
 export const Article = types
   .model('Article', {
@@ -24,6 +31,15 @@ export const Article = types
   .views(self => ({
     get commentCount(){
       return self.comments.length;
+    },
+
+    get menu(){
+      // const processor = remark().use(slug).use(extractToc, {
+      //   keys: ["data"]
+      // });
+      // const node = processor.parse(this.content);
+      // const tree = processor.runSync(node);
+      return markMenu(this.content)
     }
   }))
 

@@ -223,3 +223,11 @@ p.content{
     white-space: break-spaces;
   }
 }
+
+.menu{
+  & > ul{
+    ul {
+      padding-left: 1em;
+    }
+  }
+}

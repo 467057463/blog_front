@@ -1,26 +1,49 @@
 import { useAuth } from '@/hook/useAuth';
 import { useStore } from '@/hook/useStore';
 import { observer } from 'mobx-react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import Comment from './components/Comment';
 import Loading from '@/components/Loading';
-import { Typography, Divider, Space, Avatar } from 'antd';
+import { Typography, Divider, Space, Avatar, Button, Drawer } from 'antd';
 const { Title, Paragraph, Text } = Typography;
-import { MessageOutlined, LikeOutlined, ReadOutlined, FieldTimeOutlined } from '@ant-design/icons';
+import { MessageOutlined, LikeOutlined, ReadOutlined, FieldTimeOutlined, BarsOutlined  } from '@ant-design/icons';
 import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
 import MarkdownShow from '@/components/MarkdownShow';
+// import markMenu from '@/utils/markMenu';
 
 export default observer(() => {
   const { article } = useStore();
   const { id } = useParams()
   const { user } = useAuth();
   const match = useRouteMatch()
+  const [ menuVisible, setMenuVisible] = useState(false)
   
   useEffect(() => {
     article.fetchSource(id);
   }, [])
+  
+  console.log('article', article)
+  function generateMenu(data){
+    return (function walk(list){
+      return(
+        <ul>
+          {list.map(item => {
+            return (
+              <li>
+                <a href={`#${item.data.id}`}>{item.value}</a>
+                { 
+                  item.children && item.children.length > 0 &&
+                  walk(item.children)
+                }
+              </li>
+            )
+          })}
+        </ul>
+      )
+    })(data)    
+  }
 
   if(article.state === 'pending'){
     return <Loading/>
@@ -79,7 +102,26 @@ export default observer(() => {
         </div>        
       </Typography>
 
-  
+      <Button
+        size='large'
+        className="meta_info-btn"
+        shape="circle"
+        onClick={() => setMenuVisible(true)}
+        icon={<BarsOutlined />}
+      />
+
+      <Drawer
+        title="文章目录"
+        placement="right"
+        closable={false}
+        onClose={() => setMenuVisible(false)}
+        visible={menuVisible}
+      >
+        <div className='menu'>
+          {generateMenu(article.detail.menu)}
+        </div>       
+      </Drawer>      
+
 
 
       
