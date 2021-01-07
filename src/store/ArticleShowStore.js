@@ -16,6 +16,7 @@ export const Article = types
     title: '',
     content: '',
     createdAt: '',
+    describe: '',
     meta: types.frozen({
       view: 0,
       like: 0

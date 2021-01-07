@@ -61,7 +61,7 @@ export default observer(()=>{
               title={<Link to={`/articles/${item._id}`}>{item.title}</Link>}
               description="m2 发布于：2020/12/31"
             />
-            <p className="content">{item.content}</p>
+            <p className="content">{item.describe}</p>
           </List.Item>
         )}
       />        
