@@ -30,6 +30,7 @@ import markMenu from '@/utils/markMenu';
 import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
 const { Title, Paragraph, Text } = Typography;
+import IconFont from '@/components/IconFont';
 
 function setCodeHeight(){
   const height = window.innerHeight - 90 + 'px'
@@ -156,10 +157,10 @@ export default observer(()=> {
 
               <Button
                 size='large'
-                className="meta_info-btn"
+                className="menu-btn"
                 shape="circle"
                 onClick={() => setMenuVisible(true)}
-                icon={<BarsOutlined />}
+                icon={<IconFont type='fi-zhankai'/>}
               />
 
               <Drawer
@@ -177,6 +178,35 @@ export default observer(()=> {
             </div>
         }     
 
+        <div className='actions-wrapper'>
+          <div className='action-item' onClick={() => {setIsEdit(!isEdit)}} >
+            {
+              !isEdit ? <EditOutlined /> : <FileSearchOutlined />
+            }
+            {
+              !isEdit ? <span>编辑</span> : <span>预览</span>
+            }
+          </div>
+
+          <div className='action-item'>
+            <IconFont type='fi-menu'/>
+            <span>文章信息</span>
+          </div>
+
+          <div className='action-item' onClick={submit}>
+            <SaveOutlined />
+            <span>保存</span>
+          </div>
+
+        </div>
+
+        {/* <Button
+          size='large'
+          className="info-btn"
+          shape="circle"
+          onClick={() => console.log('ssss')} 
+          icon={<IconFont type='fi-menu'/>}
+        />
 
         <Button 
           size='large'
@@ -196,7 +226,7 @@ export default observer(()=> {
           shape="circle"
           htmlType="submit"
           icon={<SaveOutlined />}
-        />
+        /> */}
       </Form>
     </div>
   )

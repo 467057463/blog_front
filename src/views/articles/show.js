@@ -11,6 +11,7 @@ import { MessageOutlined, LikeOutlined, ReadOutlined, FieldTimeOutlined, BarsOut
 import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
 import MarkdownShow from '@/components/MarkdownShow';
+import IconFont from '@/components/IconFont';
 // import markMenu from '@/utils/markMenu';
 
 export default observer(() => {
@@ -104,10 +105,11 @@ export default observer(() => {
 
       <Button
         size='large'
-        className="meta_info-btn"
+        className="menu-btn"
         shape="circle"
+        type="primary"
         onClick={() => setMenuVisible(true)}
-        icon={<BarsOutlined />}
+        icon={<IconFont type='fi-zhankai'/>}
       />
 
       <Drawer

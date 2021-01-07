@@ -7,6 +7,14 @@ import HeadingRenderer from '@/components/HeadingRenderer';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {pojoaque} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+function tableRender(props){
+  console.log(props)
+  return (
+    <div className="table-responsive">
+      <table>{props.children}</table>
+    </div>
+  )
+}
 const renderers = {
 
   code: ({language, value}) => {
@@ -19,7 +27,7 @@ export default ({content}) => {
     <ReactMarkdown        
       className='markdown-body'
       plugins={[gfm]} 
-      renderers={{'heading': HeadingRenderer, ...renderers}}
+      renderers={{'heading': HeadingRenderer, table: tableRender, ...renderers}}
       children={content} 
     />
   )
