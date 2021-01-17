@@ -60,36 +60,36 @@ export default observer(({article, isPrview}) => {
   return(
     <div className="article-show">
       <Typography>
-        <Title>{article.detail.title}</Title>
+        <Title>{article.detail.title || '请输入文章标题'}</Title>
         
         <div className='author'>
           <Avatar size={36} src={avatar} />
           <ul>
             <li>
-              <Link className="author-name" to={'/users/' + article.detail.author._id}>{article.detail.author.username}</Link>
+              <Link className="author-name" to={'/users/' + (!isPrview ? article.detail.author._id : user._id)}>{!isPrview ? article.detail.author.username : user.name}</Link>
             </li>
             <li>
               <Space>
                 <FieldTimeOutlined />
-                {moment(article.detail.createdAt).format('YYYY年MM月DD日')}
+                {moment(!isPrview ? article.detail.createdAt : Date.now()).format('YYYY年MM月DD日')}
               </Space>
               <Space>
                 <ReadOutlined />
-                {article.detail.meta.view}
+                {!isPrview ? article.detail.meta.view : 0}
               </Space>
             </li>
           </ul>
         </div>
 
         <Paragraph className='content'>
-          <MarkdownShow content={article.detail.content}/>
+          <MarkdownShow content={article.detail.content || '请添加文章内容'}/>
         </Paragraph>
 
         <div className='meta'>    
           <div className='meta-data'>           
             <Space>
               <LikeOutlined/>
-              {article.detail.meta.like}
+              {!isPrview ? article.detail.meta.like : 0}
             </Space>
           </div>    
 
@@ -100,7 +100,7 @@ export default observer(({article, isPrview}) => {
                 <Link to={`${match.url}/edit`}>编辑</Link>
               </li>
               <li>
-                <a onClick={() => article.delete(id)}>删除</a>
+                <a onClick={() => article.delete(article.detail._id)}>删除</a>
               </li>
             </ul>
           } 
@@ -127,15 +127,6 @@ export default observer(({article, isPrview}) => {
           {generateMenu(article.detail.menu)}
         </div>       
       </Drawer>
-      {/* <h2>评论列表</h2>
-      <span>共{article.detail.commentCount}条评论</span>      
-      {
-        !article.detail.commentCount ? (
-          <div>暂无评论</div>
-        ) : article.detail.comments.map(item => (
-          <Comment key={item._id} comment={item}></Comment>  
-        ))
-      } */}
     </div>
   )
 })

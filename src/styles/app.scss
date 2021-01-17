@@ -29,7 +29,7 @@ body, html{
 }
 #root{
   height: 100%;
-  display: flex;
+  // display: flex;
 }
 ul{
   list-style: none;
@@ -228,18 +228,26 @@ p.content{
     background: #20232a;
     position: fixed;
     right: 15px;
-    bottom: 20px;
+    bottom: 50px;
     z-index: 7;
   }
+  // .article-prview & {
+  //   .menu-btn{
+  //     bottom: 50px;
+  //   }
+  // }
 }
 
 .article-prview{
   padding-bottom: 25px!important;
-  .article-show{
-    .menu-btn{
-      bottom: 50px;
-    }
-  }
+  // .article-show{
+  //   .menu-btn{
+  //     bottom: 50px;
+  //   }
+  // }
+}
+.markdown-body > :first-child{
+  margin-top: 0;
 }
 
 .menu{

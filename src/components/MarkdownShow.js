@@ -5,20 +5,22 @@ import gfm from 'remark-gfm'
 import HeadingRenderer from '@/components/HeadingRenderer';
 
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {pojoaque} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {a11yDark} from 'react-syntax-highlighter/dist/esm/styles/prism'
+// import SyntaxHighlighter from 'react-syntax-highlighter';
+// import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-function tableRender(props){
-  console.log(props)
-  return (
-    <div className="table-responsive">
-      <table>{props.children}</table>
-    </div>
-  )
-}
 const renderers = {
-
+  tableRender(props){
+    return (
+      <div className="table-responsive">
+        <table>{props.children}</table>
+      </div>
+    )
+  },
   code: ({language, value}) => {
-    return <SyntaxHighlighter style={pojoaque} language={language} children={value} />
+    return (
+      <SyntaxHighlighter style={a11yDark} language={language} children={value} />
+    )
   }
 }
 
@@ -27,7 +29,10 @@ export default ({content}) => {
     <ReactMarkdown        
       className='markdown-body'
       plugins={[gfm]} 
-      renderers={{'heading': HeadingRenderer, table: tableRender, ...renderers}}
+      renderers={{
+        'heading': HeadingRenderer,
+        ...renderers
+      }}
       children={content} 
     />
   )
