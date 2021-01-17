@@ -46,14 +46,7 @@ export default observer(() => {
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
           </Button>
-        </Form.Item>
-        
-        {/* <label>用户名：</label>
-        <input type="text" value={username} name="username" onChange={(event)=>setUsername(event.target.value)}/>
-        <label>密码：</label>
-        <input type="password" value={password} name="password" onChange={(event)=>setPassword(event.target.value)}/>
-
-        <button type="submit">登录</button> */}
+        </Form.Item>     
       </Form>
     </div>
 )});

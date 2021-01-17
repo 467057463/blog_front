@@ -12,16 +12,17 @@
     border-radius: 0;
     border-color: transparent;
     border-bottom-color: #eee;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 5;
+    // position: fixed;
+    // left: 0;
+    // right: 0;
+    // z-index: 5;
   }  
   .CodeMirror{
     position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 10000;
+    top: 90px;
+    bottom: 40px;
+    left: 0;
+    right: 0;
     height: auto;
   }
   // .coder-editor{
