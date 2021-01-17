@@ -1,53 +1,40 @@
-.prview-wrapper{
-  padding-bottom: 40px!important;
-}
-.article-edit, .article_show{
-  min-height: 100%;
-  height: 100%;
-  position: relative;
+.article-edit{
+  // min-height: 100%;
+  // height: 100%;
+  // position: relative;
+
   .ant-form{
     min-height: 100%;
     height: 100%;
     display: block;
   }
-  .edit-wrapper{
-    height: 100%;
-    .title-input{
-      border-radius: 0;
-      border-color: transparent;
-      border-bottom-color: #eee;
-      position: fixed;
-      left: 0;
-      right: 0;
-      z-index: 5;
-    }  
-    .coder-editor{
-      height: 100%;
-      padding-top: 40px; 
-      background: #292D3E;
-    }
-    .react-codemirror2{
-      height: 100%;
-      overflow-y: auto;
-      background: #292D3E;
-    }
-  }
-
-  .prview-btn,
-  .info-btn,
-  .save-btn{
+  .title-input{
+    border-radius: 0;
+    border-color: transparent;
+    border-bottom-color: #eee;
     position: fixed;
-    right: 15px;
-    bottom: 80px;
-    z-index: 7;
+    left: 0;
+    right: 0;
+    z-index: 5;
+  }  
+  .CodeMirror{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 10000;
+    height: auto;
   }
-  .prview-btn{
-    bottom: 130px;
-  }
-  .info-btn{
-    top: 70px;
-    bottom: auto;
-  }
+  // .coder-editor{
+  //   height: 100%;
+  //   padding-top: 40px; 
+  //   background: #292D3E;
+  // }
+  // .react-codemirror2{
+  //   height: 100%;
+  //   overflow-y: auto;
+  //   background: #292D3E;
+  // }
+
   .actions-wrapper{
     position: fixed;
     left: 0;
@@ -72,14 +59,5 @@
     .action-item + .action-item{
       border-left: 1px solid #eee;
     }
-  }
-  .menu-btn{
-    border: none;
-    color: white;
-    background: #20232a;
-    position: fixed;
-    right: 15px;
-    bottom: 50px;
-    z-index: 7;
-  }
+  }  
 }

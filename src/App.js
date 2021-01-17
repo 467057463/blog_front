@@ -41,34 +41,31 @@ const App = observer(() => {
 
   return (
     <Layout className="app">
-      <Layout>
-        <Header/>
-        <Content style={{paddingTop: '50px'}}>
-          <Switch>
-            <Route
-              path="/"
-              exact
-              component={loadable(() =>
-                import(/* WebpackChunkName: "home" */ './views/home')
-              )}
-            />  
-            <Route
-              path="/login"
-              exact
-              component={loadable(() =>
-                import(/* WebpackChunkName: "Login" */ './views/Login')
-              )}
-            />  
-            <Route 
-              path="/articles"
-              component={loadable(() =>
-                import(/* WebpackChunkName: "article" */ './views/articles')
-              )}
-            />    
-          </Switch>
-        </Content>
-        {/* <Footer style={{textAlign: 'center'}}>m2-个人博客</Footer>  */}
-      </Layout>           
+      <Header/>
+      <Content style={{paddingTop: '50px'}}>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            component={loadable(() =>
+              import(/* WebpackChunkName: "home" */ './views/home')
+            )}
+          />  
+          <Route
+            path="/login"
+            exact
+            component={loadable(() =>
+              import(/* WebpackChunkName: "Login" */ './views/Login')
+            )}
+          />  
+          <Route 
+            path="/articles"
+            component={loadable(() =>
+              import(/* WebpackChunkName: "article" */ './views/articles')
+            )}
+          />    
+        </Switch>
+      </Content>       
     </Layout>
   );
 })

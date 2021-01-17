@@ -169,8 +169,8 @@ p.content{
     width: 100%;
   }
 }
-// 
-.article_show{
+// 文章详情
+.article-show{
   padding: 15px;
   .meta{
     // border-bottom: 1px solid #0000000f;
@@ -221,6 +221,24 @@ p.content{
   .content{
     font-size: 18px;
     white-space: break-spaces;
+  }  
+  .menu-btn{
+    border: none;
+    color: white;
+    background: #20232a;
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+    z-index: 7;
+  }
+}
+
+.article-prview{
+  padding-bottom: 25px!important;
+  .article-show{
+    .menu-btn{
+      bottom: 50px;
+    }
   }
 }
 
@@ -244,3 +262,5 @@ p.content{
     align-items: center;
   }
 }
+
+

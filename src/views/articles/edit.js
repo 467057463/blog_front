@@ -31,6 +31,7 @@ import avatar from '@/images/avatar.jpg';
 import moment from 'moment';
 const { Title, Paragraph, Text } = Typography;
 import IconFont from '@/components/IconFont';
+import Article from './components/Article';
 
 function setCodeHeight(){
   const height = window.innerHeight - 90 + 'px'
@@ -55,15 +56,15 @@ export default observer(()=> {
     }
   }, [])
 
-  useEffect(() => {
-    setCodeHeight()
-    window.onresize = function(){
-      setCodeHeight()
-    }
-    return () => {
-      window.onresize = null;
-    }
-  }, [])
+  // useEffect(() => {
+  //   setCodeHeight()
+  //   window.onresize = function(){
+  //     setCodeHeight()
+  //   }
+  //   return () => {
+  //     window.onresize = null;
+  //   }
+  // }, [])
 
   function changeContent(content){
     setMenu(markMenu(content))
@@ -75,7 +76,6 @@ export default observer(()=> {
       title,
       content
     }
-    // event.preventDefault();
     if(params.id){
       article.update(params.id, data)
     }else{
@@ -108,7 +108,7 @@ export default observer(()=> {
       <Form onFinish={submit}>
         {
           isEdit ? 
-            <div className='edit-wrapper'>
+            <>
               <Input 
                 className='title-input'
                 size="large" 
@@ -117,117 +117,33 @@ export default observer(()=> {
                 onChange={(event)=>setTitle(event.target.value)}
               />
               <CoderEditor content={content} setContent={changeContent}/> 
-            </div>
+            </>
           :
-            <div className='prview-wrapper article_show'>
-              <Typography>
-                <Title level={3}>{title || '你还没有输入文章标题'}</Title>
-                <div className='author'>
-                  <Avatar size={36} src={avatar} />
-                  <ul>
-                    <li>
-                      <Link className="author-name" to='#'>{user.name}</Link>
-                    </li>
-                    <li>
-                      <Space>
-                        <FieldTimeOutlined />
-                        {moment().format('YYYY年MM月DD日')}
-                      </Space>
-                      <Space>
-                        <ReadOutlined />
-                        0
-                      </Space>
-                    </li>
-                  </ul>
-                </div>
-
-                <Paragraph className='content'>
-                  <MarkdownShow content={content || '你还没有输入文章内容'}/>
-                </Paragraph>
-
-                <div className='meta'>    
-                  <div className='meta-data'>           
-                    <Space>
-                      <LikeOutlined/>
-                      0
-                    </Space>
-                  </div>    
-                </div>                
-              </Typography>
-
-              <Button
-                size='large'
-                className="menu-btn"
-                shape="circle"
-                onClick={() => setMenuVisible(true)}
-                icon={<IconFont type='fi-zhankai'/>}
-              />
-
-              <Drawer
-                title="文章目录"
-                placement="right"
-                closable={false}
-                onClose={() => setMenuVisible(false)}
-                visible={menuVisible}
-              >
-                <div className='menu'>
-                  {generateMenu(menu)}
-                </div>       
-              </Drawer>      
-
+            <div className="article-prview">    
+              <Article article={article} isPrview={true} />
             </div>
-        }     
-
-        <div className='actions-wrapper'>
-          <div className='action-item' onClick={() => {setIsEdit(!isEdit)}} >
-            {
-              !isEdit ? <EditOutlined /> : <FileSearchOutlined />
-            }
-            {
-              !isEdit ? <span>编辑</span> : <span>预览</span>
-            }
-          </div>
-
-          <div className='action-item'>
-            <IconFont type='fi-menu'/>
-            <span>文章信息</span>
-          </div>
-
-          <div className='action-item' onClick={submit}>
-            <SaveOutlined />
-            <span>保存</span>
-          </div>
-
-        </div>
-
-        {/* <Button
-          size='large'
-          className="info-btn"
-          shape="circle"
-          onClick={() => console.log('ssss')} 
-          icon={<IconFont type='fi-menu'/>}
-        />
-
-        <Button 
-          size='large'
-          className="prview-btn"
-          type="primary" 
-          shape="circle"
-          onClick={() => {setIsEdit(!isEdit)}} 
-          icon={
+        }
+      </Form>
+      <div className='actions-wrapper'>
+        <div className='action-item' onClick={() => {setIsEdit(!isEdit)}} >
+          {
             !isEdit ? <EditOutlined /> : <FileSearchOutlined />
           }
-        />
+          {
+            !isEdit ? <span>编辑</span> : <span>预览</span>
+          }
+        </div>
 
-        <Button  
-          size='large'
-          className="save-btn"
-          type="primary" 
-          shape="circle"
-          htmlType="submit"
-          icon={<SaveOutlined />}
-        /> */}
-      </Form>
+        <div className='action-item'>
+          <IconFont type='fi-menu'/>
+          <span>文章信息</span>
+        </div>
+
+        <div className='action-item' onClick={submit}>
+          <SaveOutlined />
+          <span>保存</span>
+        </div>
+      </div>        
     </div>
   )
 })
