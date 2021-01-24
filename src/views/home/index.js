@@ -5,6 +5,7 @@ import { useStore } from '@/hook/useStore';
 import { List, Avatar, Space, Image  } from 'antd';
 import { MessageOutlined, LikeOutlined, ReadOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import Loading from '@/components/Loading';
 import avatar from '@/images/avatar.jpg';
 import exartImage from '@/images/2020.jpg';
@@ -59,7 +60,7 @@ export default observer(()=>{
             <List.Item.Meta
               avatar={<Avatar size={46} src={avatar} />}
               title={<Link to={`/articles/${item._id}`}>{item.title}</Link>}
-              description="m2 发布于：2020/12/31"
+              description={`m2 发布于：${moment().format('YYYY年MM月DD日')}`}
             />
             <p className="content">{item.describe}</p>
           </List.Item>

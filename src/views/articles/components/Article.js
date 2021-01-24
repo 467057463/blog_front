@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import moment from 'moment';
 import { useAuth } from '@/hook/useAuth';
@@ -31,6 +31,18 @@ import avatar from '@/images/avatar.jpg';
 import MarkdownShow from '@/components/MarkdownShow';
 import IconFont from '@/components/IconFont';
 
+const scrollToAnchor = (anchorName) => {
+  if (anchorName) {
+    let anchorElement = document.getElementById(anchorName);
+    if(anchorElement) { 
+      anchorElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      }); 
+    }
+  }
+}
+
 function generateMenu(data){
   return (function walk(list){
     return(
@@ -38,7 +50,7 @@ function generateMenu(data){
         {list.map(item => {
           return (
             <li key={item.data.id}>
-              <a href={`#${item.data.id}`}>{item.value}</a>
+              <a onClick={()=> scrollToAnchor(item.data.id)}>{item.value}</a>
               { 
                 item.children && item.children.length > 0 &&
                 walk(item.children)
@@ -56,6 +68,15 @@ export default observer(({article, isPrview}) => {
   const { user } = useAuth();
   const match = useRouteMatch();
   const [ menuVisible, setMenuVisible] = useState(false)
+  // useEffect(()=>{
+  //   document.addEventListener('click', function(event){
+  //     const menu = Array.prototype.slice.call(document.querySelectorAll('.menu a'))
+  //     if(menu.includes(event.target)){
+  //       console.log(event.target)
+  //       event.preventDefault()
+  //     }
+  //   }, false)
+  // }, [])
 
   return(
     <div className="article-show">

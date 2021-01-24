@@ -1,5 +1,9 @@
 import React from 'react';
 
+// const scrollToAnchor = (){
+//   console.log()
+// }
+
 const flatten = (text, child) => {
   return typeof child === 'string'
     ? text + child
@@ -13,8 +17,8 @@ const flatten = (text, child) => {
 const HeadingRenderer = props => {
   const children = React.Children.toArray(props.children);
   const text = children.reduce(flatten, '');
-  // const slug = text.toLowerCase().replace(/\W/g, '-');
-  return React.createElement('h' + props.level, { id: text }, props.children);
+  const slug = text.toLowerCase().replace(/\(\)/g, "");
+  return React.createElement('h' + props.level, { id: slug }, props.children);
 };
 
 export default HeadingRenderer;
