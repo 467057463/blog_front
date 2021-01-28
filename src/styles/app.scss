@@ -131,14 +131,6 @@ ul{
 // .ant-list-item-main{
 //   margin-right: 10px;
 // }
-p.content{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-break: break-all;
-}
 
 .ant-list-item-extra{
   margin: 0 10px 0 0!important;
@@ -160,6 +152,74 @@ p.content{
   color: #CCCCCC;
   font-size: 12px;
 }
+
+// 文章列表-首页
+.home{
+  .article-item{
+    border-bottom: 3px solid #eee;
+  }
+  .article-header{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    .ant-avatar{
+      margin-right: 5px;
+    }
+    .user-name{
+      color: #808080;
+    }
+  }
+  .article-body{
+    padding: 0 20px;
+    &::after{
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .ant-image{
+      float: right;
+      margin-left: 10px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .article-title{
+      font-size: 16px;
+      font-weight: bolder;
+      color: #000;
+      // line-height: 1;
+      // margin-bottom: 8px;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+    }
+    p.content{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      margin-bottom: 0;
+      color: #808080;
+    }  
+  }
+  .meta-info{
+    padding: 0 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: #808080;
+    span + span{
+      margin-left: 10px;
+    }
+  }
+}
+
 
 // 登录
 .login{
@@ -270,5 +330,3 @@ p.content{
     align-items: center;
   }
 }
-
-

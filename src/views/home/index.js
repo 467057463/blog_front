@@ -9,6 +9,7 @@ import moment from 'moment';
 import Loading from '@/components/Loading';
 import avatar from '@/images/avatar.jpg';
 import exartImage from '@/images/2020.jpg';
+import Time from "@/components/Time";
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -35,7 +36,10 @@ export default observer(()=>{
 
   return(
     <div className='home'>
-      <List
+      {
+        articles.list.map(item => <ArticleItem key={item._id} article={item}/>)
+      }
+      {/* <List
         itemLayout="vertical"
         size="large"        
         dataSource={articles.list}
@@ -60,12 +64,12 @@ export default observer(()=>{
             <List.Item.Meta
               avatar={<Avatar size={46} src={avatar} />}
               title={<Link to={`/articles/${item._id}`}>{item.title}</Link>}
-              description={`m2 发布于：${moment().format('YYYY年MM月DD日')}`}
+              description={<Time prefix={<span style={{marginRight: '5px'}}>m2</span>} time={item.createdAt} suffix="发布"/>}
             />
             <p className="content">{item.describe}</p>
           </List.Item>
         )}
-      />        
+      />         */}
     </div>
   )
 })
