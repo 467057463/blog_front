@@ -5,6 +5,8 @@ import avatar from '@/images/avatar.jpg';
 import exart01 from '@/images/exart_01.jpg';
 import exart02 from '@/images/exart_02.jpg';
 import exart03 from '@/images/exart_03.jpg';
+import exart04 from '@/images/exart_04.jpg';
+import exart05 from '@/images/exart_05.jpg';
 
 import { 
   List, 
@@ -18,7 +20,7 @@ import {
   ReadOutlined 
 } from '@ant-design/icons';
 
-const images = [exart01, exart02, exart03]
+const images = [exart01, exart02, exart03, exart04, exart05]
 
 const imgUrl = (() => {
   let i = -1;
