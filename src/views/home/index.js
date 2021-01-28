@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Loading from '@/components/Loading';
 import avatar from '@/images/avatar.jpg';
-import exartImage from '@/images/2020.jpg';
 import Time from "@/components/Time";
 
 const IconText = ({ icon, text }) => (
