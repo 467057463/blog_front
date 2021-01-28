@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, useLocation, Prompt } from 'react-router-dom';
 import { useStore } from '@/hook/useStore';
 import { 
   Form, 
@@ -22,16 +22,22 @@ export default observer(()=> {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [menu, setMenu] = useState([]);
+  const [isBlocking, setIsBlocking] = useState(false);
   const { article } = useStore();
   const { params } = useRouteMatch();
+  const location = useLocation();
   
   useEffect(async ()=> {
     if(params.id){
       const res = await article.fetchSource(params.id);
       setTitle(res.data.title);
       changeContent(res.data.content);
+    }else{
+      setTitle("")
+      changeContent("")
+      setIsEdit(true)
     }
-  }, [])
+  }, [location])
 
   function changeContent(content){
     setMenu(markMenu(content))
