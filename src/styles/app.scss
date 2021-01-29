@@ -37,6 +37,7 @@ ul{
   margin: 0;
 }
 .loading{
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,6 +49,16 @@ ul{
     color: #349eff;
     font-size: 24px;
     margin-bottom: 10px;;
+  }
+}
+.loadmore, .nomore{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #808080;
+  .anticon{
+    margin-right: 10px;;
   }
 }
 
