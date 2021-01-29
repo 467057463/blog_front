@@ -53,7 +53,7 @@ export default observer(()=>{
           articles.state === 'pending' && <Loading/>
         }
         {
-          articles.list.map(item => <ArticleItem key={item._id} article={item}/>)
+          articles.list.map((item, index) => <ArticleItem key={item._id} article={item} index={index}/>)
         }
         {
           !hasMore && <div className="nomore">没有更多了...</div>

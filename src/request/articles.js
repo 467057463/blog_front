@@ -2,7 +2,7 @@ import API from '@/constants/api';
 import request from '@/request';
 
 export function getArticleList(page){
-  return request.get(API.ARTICLE_LIST, {params: {page, quantity: 5}})
+  return request.get(API.ARTICLE_LIST, {params: {page, quantity: 10}})
 }
 
 export function getArticle(id){

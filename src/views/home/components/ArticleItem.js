@@ -22,22 +22,18 @@ import {
 
 const images = [exart01, exart02, exart03, exart04, exart05]
 
-const imgUrl = (() => {
-  let i = -1;
-  return() => {
-    i++;
-    if(i < images.length){
-      return images[i]
-    }else{
-      return "";
-    }
-  }  
-})()
+const imgUrl = (index) => {
+  if(index < images.length){
+    return images[index]
+  }else{
+    return "";
+  }
+}
 
-export default observer(({article}) => {
+export default observer(({article, index}) => {
   const history = useHistory();
 
-  const url = imgUrl();
+  const url = imgUrl(index);
   return(
     <div className="article-item" onClick={() => history.push(`/articles/${article._id}`)}>
       <div className="article-header">
