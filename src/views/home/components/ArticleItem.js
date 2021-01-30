@@ -38,7 +38,7 @@ export default observer(({article, index}) => {
     <div className="article-item" onClick={() => history.push(`/articles/${article._id}`)}>
       <div className="article-header">
         <Avatar size={20} src={avatar} />
-        <Link className='user-name' to={'/users/' + article.author._id}>{article.author.username}</Link>
+        <span className='user-name' to={'/users/' + article.author._id}>{article.author.username}</span>
       </div>
       <div className="article-body">
         {url && <Image
@@ -47,7 +47,7 @@ export default observer(({article, index}) => {
           width={70}
           src={url}
         />}
-        <Link className="article-title" to={'/articles/' + article._id}>{article.title}</Link>
+        <span className="article-title" to={'/articles/' + article._id}>{article.title}</span>
         <p className="content">{article.describe}</p>
       </div>      
       <div className="meta-info">

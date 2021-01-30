@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import InfiniteScroll from 'react-infinite-scroller';
+import { useRouteMatch, useLocation, Prompt } from 'react-router-dom';
 import ArticleItem from './components/ArticleItem';
 import { useStore } from '@/hook/useStore';
 import { List, Avatar, Space, Image  } from 'antd';
@@ -14,6 +15,13 @@ import Time from "@/components/Time";
 
 export default observer(()=>{
   const { articles } = useStore();
+  const location = useLocation();
+
+  useEffect(()=>{
+    return () => {
+      articles.reset();
+    }
+  }, [])
 
   // useEffect(()=>{
   //   articles.fetchArticles();

@@ -25,5 +25,12 @@ export const ArticlesStore = types
         console.error("Failed to fetch projects", error)
         self.state = "error"
       }
-    })  
+    }),
+    reset: flow(function* reset(){
+      self.list = [];
+      self.page = 0;
+      self.quantity = 10;
+      self.count = 0;
+      self.state = "pending"
+    })
   }))
