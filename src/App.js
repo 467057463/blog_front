@@ -3,8 +3,8 @@ import { observer } from 'mobx-react';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import { Layout } from 'antd';
+import Progress from '@/components/progress';
 import loadable from '@loadable/component';
-
 import Header from '@/views/layout/Header';
 import Loading from '@/components/Loading';
 
@@ -41,6 +41,7 @@ const App = observer(() => {
 
   return (
     <Layout className="app">
+      <Progress/>
       <Header/>
       <Content style={{paddingTop: '50px'}}>
         <Switch>

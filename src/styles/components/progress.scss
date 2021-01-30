@@ -1,0 +1,18 @@
+.progress{
+  pointer-events: none;
+  .bar{
+    // background: #1890ff;
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    .peg{
+      background: #1890ff;
+      width: 0;
+      height: 100%;
+      transition: width 250ms;
+    }
+  }
+}
