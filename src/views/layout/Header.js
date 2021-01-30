@@ -33,7 +33,9 @@ export default observer(({collapsed, setCollapsed}) => {
 
   return(
     <Header the className="header">    
-      <div className="header-title">{title.name}</div>
+      <div className="header-title">
+        <div className="title-content">{title.name}</div>
+      </div>
 
       <div className="header-wrap">
         {

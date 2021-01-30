@@ -30,38 +30,67 @@ import {
 import avatar from '@/images/avatar.jpg';
 import MarkdownShow from '@/components/MarkdownShow';
 import IconFont from '@/components/IconFont';
+import { Anchor } from 'antd';
 
-const scrollToAnchor = (anchorName) => {
-  if (anchorName) {
-    let anchorElement = document.getElementById(anchorName);
-    if(anchorElement) { 
-      anchorElement.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      }); 
-    }
-  }
-}
+const handleClick = (e, link) => {
+  e.preventDefault();
+};
 
 function generateMenu(data){
   return (function walk(list){
     return(
-      <ul>
+      <>
         {list.map(item => {
           return (
-            <li key={item.data.id}>
-              <a onClick={()=> scrollToAnchor(item.data.id)}>{item.value}</a>
+            <Anchor.Link 
+              key={item.data.id} 
+              title={item.value} 
+              href={'#' + item.data.id}              
+            >              
               { 
                 item.children && item.children.length > 0 &&
                 walk(item.children)
               }
-            </li>
+            </Anchor.Link>
           )
         })}
-      </ul>
+      </>
     )
   })(data)    
 }
+
+
+// const scrollToAnchor = (anchorName) => {
+//   if (anchorName) {
+//     let anchorElement = document.getElementById(anchorName);
+//     if(anchorElement) { 
+//       anchorElement.scrollIntoView({ 
+//         behavior: 'smooth', 
+//         block: 'start' 
+//       }); 
+//     }
+//   }
+// }
+
+// function generateMenu(data){
+//   return (function walk(list){
+//     return(
+//       <ul>
+//         {list.map(item => {
+//           return (
+//             <li key={item.data.id}>
+//               <a onClick={()=> scrollToAnchor(item.data.id)}>{item.value}</a>
+//               { 
+//                 item.children && item.children.length > 0 &&
+//                 walk(item.children)
+//               }
+//             </li>
+//           )
+//         })}
+//       </ul>
+//     )
+//   })(data)    
+// }
 
 
 export default observer(({article, isPrview}) => {
@@ -145,7 +174,14 @@ export default observer(({article, isPrview}) => {
         visible={menuVisible}
       >
         <div className='menu'>
-          {generateMenu(article.detail.menu)}
+          <Anchor
+            affix={false}
+            showInkInFixed={true}
+            onClick={handleClick}
+            offsetTop={60}
+          >
+            {generateMenu(article.detail.menu)}
+          </Anchor>          
         </div>       
       </Drawer>
     </div>

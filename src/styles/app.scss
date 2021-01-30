@@ -81,9 +81,16 @@ ul{
     align-items: center
   }
   &-title{   
+    left: 85px!important;
+    right: 85px!important;
     z-index: 2;
     font-size: 18px;    
-    justify-content: center;    
+    justify-content: center; 
+    > .title-content{      
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;  
+    } 
   }
   &-wrap{   
     z-index: 3;   
@@ -326,22 +333,18 @@ ul{
 }
 
 .menu{
-  & > ul{
-    & > li{
-      font-weight: bolder;
-      font-size: 16px;
-    }
-    ul {
-      padding-left: 1em;
-      font-weight: normal;
-      font-size: 14px;
-    }
-  }
   a{
     color: black;
     display: block;
     height: 30px;
     display: flex;
     align-items: center;
+  }
+  .ant-anchor-link{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+  }
+  .ant-anchor-link-title{
+    margin-bottom: 0!important;
   }
 }
