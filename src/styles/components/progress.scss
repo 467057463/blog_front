@@ -7,10 +7,10 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     .peg{
       background: #1890ff;
-      box-shadow: 0px 0 5px #000000d1;
+      // box-shadow: 0px 0 5px #000000d1;
       width: 0;
       height: 100%;
       transition: width 250ms;
