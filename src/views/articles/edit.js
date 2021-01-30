@@ -33,7 +33,8 @@ export default observer(()=> {
       setTitle(res.data.title);
       changeContent(res.data.content);
       app.setTitle({
-        name: "编辑文章"
+        name: "编辑文章",
+        icon: 'back'
       })
     }else{
       setTitle("")
