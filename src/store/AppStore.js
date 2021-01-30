@@ -30,5 +30,12 @@ export const AppStore = types
         show: true,       
         percent: value
       };
+    },
+    setTitle(obj){
+      self.title = {
+        ...self.title,
+        ...obj
+      }
+      document.title = `${self.title.name} - m2前端技术博客`
     }
   }))

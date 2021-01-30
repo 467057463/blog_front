@@ -1,13 +1,20 @@
 import { useStore } from '@/hook/useStore';
 import { observer } from 'mobx-react';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '@/hook/useAuth';
 import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 export default observer(() => {
-  const { auth } = useStore();
+  const { auth, app } = useStore();
+
+  useEffect(async () => {
+    app.setTitle({
+      name: "登录",
+      icon: 'back'
+    })
+  }, [])
 
   function submit(values){
     auth.login(values)

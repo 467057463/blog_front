@@ -23,7 +23,7 @@ export default observer(()=> {
   const [content, setContent] = useState('');
   const [menu, setMenu] = useState([]);
   const [isBlocking, setIsBlocking] = useState(false);
-  const { article } = useStore();
+  const { article, app } = useStore();
   const { params } = useRouteMatch();
   const location = useLocation();
   
@@ -32,10 +32,17 @@ export default observer(()=> {
       const res = await article.fetchSource(params.id);
       setTitle(res.data.title);
       changeContent(res.data.content);
+      app.setTitle({
+        name: "编辑文章"
+      })
     }else{
       setTitle("")
       changeContent("")
       setIsEdit(true)
+      app.setTitle({
+        name: "发布文章",
+        icon: 'back'
+      })
     }
   }, [location])
 

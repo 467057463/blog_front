@@ -2,18 +2,20 @@ import { useAuth } from '@/hook/useAuth';
 import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useStore } from '@/hook/useStore';
 import { Layout, Avatar, Drawer, Badge } from 'antd';
 const { Header } = Layout;
-import { EditOutlined, ImportOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
+import { LeftOutlined, EditOutlined, ImportOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
+import IconFont from '@/components/IconFont';
 import Logo from '@/images/logo.png';
 import avatar from '@/images/avatar.jpg';
 
 
 export default observer(({collapsed, setCollapsed}) => {
   const { user, logout } = useAuth();
-
   const [visible, setVisible] = useState(false);
+  const { app } = useStore();
+  const { title } = app;
 
 
 
@@ -31,10 +33,21 @@ export default observer(({collapsed, setCollapsed}) => {
 
   return(
     <Header the className="header">    
-      <div className="header-title">首页</div>
+      <div className="header-title">{title.name}</div>
 
       <div className="header-wrap">
-        <Link to='/'><img className='logo' src={Logo}/></Link>
+        {
+          app.title.icon === '' &&         
+          <span></span>
+        }
+        { 
+          app.title.icon === 'logo' &&         
+          <Link to='/'><img className='logo' src={Logo}/></Link>
+        }
+        {
+          app.title.icon === 'back' &&
+          <Link to='/'><IconFont type='fi-left'/></Link>
+        }
 
         <div className="right-actions">
           { user

@@ -14,10 +14,13 @@ import avatar from '@/images/avatar.jpg';
 import Time from "@/components/Time";
 
 export default observer(()=>{
-  const { articles } = useStore();
-  const location = useLocation();
+  const { articles, app } = useStore();
 
   useEffect(()=>{
+    app.setTitle({
+      name: '首页',
+      icon: 'logo'
+    })
     return () => {
       articles.reset();
     }

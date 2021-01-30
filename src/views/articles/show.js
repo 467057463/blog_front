@@ -6,11 +6,15 @@ import Loading from '@/components/Loading';
 import Article from './components/Article';
 
 export default observer(() => {
-  const { article } = useStore();
+  const { article, app } = useStore();
   const { id } = useParams()
   
-  useEffect(() => {
-    article.fetchSource(id);
+  useEffect(async () => {
+    await article.fetchSource(id);
+    app.setTitle({
+      name: article.detail.title,
+      icon: 'back'
+    })
   }, [])
 
 
