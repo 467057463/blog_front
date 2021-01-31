@@ -9,6 +9,7 @@ import 'codemirror/mode/pug/pug'
 import 'codemirror/mode/sass/sass'
 import 'codemirror/mode/vue/vue'
 // import 'codemirror/mode/gfm/gfm'
+import 'codemirror/addon/selection/active-line';
 
 
 export default ({content, setContent}) => {
@@ -21,9 +22,12 @@ export default ({content, setContent}) => {
           theme: 'material-palenight',
           lineNumbers: true,
           lineWrapping: true,
+          styleActiveLine: {
+            nonEmpty: true
+          },
+          styleActiveSelected: true,
           fencedCodeBlockHighlighting: true,
           highlightFormatting: true,
-          fencedCodeBlockDefaultMode: 'javascript'
         }}
         onBeforeChange={(editor, data, value) => {
           setContent(value);

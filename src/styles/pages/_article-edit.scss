@@ -12,6 +12,9 @@
     right: 0;
     height: auto;
   }
+  .CodeMirror-activeline-background ,.CodeMirror-activeline-gutter {
+    background: rgba(0, 0, 0, 0.4)!important;
+  }
 
   .actions-wrapper{
     position: fixed;

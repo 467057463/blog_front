@@ -348,3 +348,9 @@ ul{
     margin-bottom: 0!important;
   }
 }
+
+@media (prefers-color-scheme: dark){
+  html, img{
+    filter: invert(1) hue-rotate(.5turn);
+  }
+}
