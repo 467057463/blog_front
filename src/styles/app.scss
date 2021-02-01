@@ -350,7 +350,16 @@ ul{
 }
 
 @media (prefers-color-scheme: dark){
-  html, img{
+  html, img, pre{
     filter: invert(1) hue-rotate(.5turn);
+  }
+  .CodeMirror, .CodeMirror-gutters{
+    background: white!important;
+    color: #fff!important;
+  }
+  .article-edit{
+    .CodeMirror-activeline-background ,.CodeMirror-activeline-gutter {
+      background: rgba(0, 0, 0, 0.1)!important;
+    }
   }
 }
