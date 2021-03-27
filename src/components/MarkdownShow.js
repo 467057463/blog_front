@@ -71,7 +71,8 @@ export default ({content}) => {
       className='markdown-body'
       plugins={[gfm]} 
       renderers={renderers}
-      children={content} 
+      children={content}
+      allowDangerousHtml
     />
   )
 }
