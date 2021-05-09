@@ -8,9 +8,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { definitions } = new Dotenv();
 const API_BASE_URL = JSON.stringify(definitions['process.env.API_BASE_URL']);
-console.log(API_BASE_URL);
 
-module.exports = merge(common, {
+// 分析打包时间
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+module.exports = smp.wrap(merge(common, {
   mode: 'development',
 
   devtool: 'inline-source-map',
@@ -61,4 +64,4 @@ module.exports = merge(common, {
     })
   ]
 
-});
+}));

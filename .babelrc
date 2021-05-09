@@ -3,14 +3,21 @@
     "@babel/preset-react",
     [
       "@babel/preset-env",
-      {
-        "targets": {
-          "node": "current",
-        }
-      }
+      // {
+      //   "targets": {
+      //     "node": "current",
+      //   },
+      //   "useBuiltIns": "usage",
+      //   "corejs": "3.6.5"
+      // }
     ]
   ],
   "plugins": [
+    [
+      "@babel/plugin-transform-runtime", {
+        "corejs": 3
+      }
+    ],
     "react-hot-loader/babel",
     ["module-resolver", {
       "root": ["./src"],

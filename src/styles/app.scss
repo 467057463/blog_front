@@ -4,10 +4,12 @@
 @import '~codemirror/lib/codemirror.css';
 @import '~codemirror/theme/material-palenight.css';
 // @import '~github-markdown-css/github-markdown.css';
+@import '~bytemd/dist/index.min.css';
 @import './markdown.scss';
 
 @import './pages/article-edit';
 @import './components/progress';
+
 
 // .markdown-body {
 //   box-sizing: border-box;

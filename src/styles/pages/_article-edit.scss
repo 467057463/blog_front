@@ -1,20 +1,29 @@
 .article-edit{
+  .bytemd {
+    height: calc(100vh - 100px);
+  }
+
   .title-input{
+    font-size: 24px;
+    height: 50px;
+    font-weight: 500;
     border-radius: 0;
     border-color: transparent;
+    padding-left: 20px;
+    background-color: #fafafa;
     border-bottom-color: #eee;
   }  
-  .CodeMirror{
-    position: absolute;
-    top: 90px;
-    bottom: 40px;
-    left: 0;
-    right: 0;
-    height: auto;
-  }
-  .CodeMirror-activeline-background ,.CodeMirror-activeline-gutter {
-    background: rgba(0, 0, 0, 0.4)!important;
-  }
+  // .CodeMirror{
+  //   position: absolute;
+  //   top: 90px;
+  //   bottom: 40px;
+  //   left: 0;
+  //   right: 0;
+  //   height: auto;
+  // }
+  // .CodeMirror-activeline-background ,.CodeMirror-activeline-gutter {
+  //   background: rgba(0, 0, 0, 0.4)!important;
+  // }
 
   .actions-wrapper{
     position: fixed;

@@ -11,6 +11,8 @@ import {
   FileSearchOutlined, 
   SaveOutlined, 
 } from '@ant-design/icons';
+import { Editor, Viewer } from '@bytemd/react';
+
 import CoderEditor from '@/components/CoderEditor';
 import markMenu from '@/utils/markMenu';
 import IconFont from '@/components/IconFont';
@@ -66,7 +68,22 @@ export default observer(()=> {
 
   return(
     <div className='article-edit'>
-      <Form onFinish={submit}>
+      <b>eee</b>
+      <Input 
+        className='title-input'
+        size="large" 
+        placeholder="文章标题" 
+        value={title}
+        onChange={(event)=>setTitle(event.target.value)}
+      />
+      <Editor
+        value={content}
+        onChange={(value) => {
+          setContent(value);
+        }}
+      />
+
+      {/* <Form onFinish={submit}>  
         {
           isEdit ? 
             <>
@@ -93,6 +110,7 @@ export default observer(()=> {
               />
             </div>
         }
+
       </Form>
       <div className='actions-wrapper'>
         <div className='action-item' onClick={() => {setIsEdit(!isEdit)}} >
@@ -113,7 +131,7 @@ export default observer(()=> {
           <SaveOutlined />
           <span>保存</span>
         </div>
-      </div>        
+      </div>         */}
     </div>
   )
 })
